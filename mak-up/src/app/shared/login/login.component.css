@@ -1,0 +1,13 @@
+#form-login{
+    padding-top: 2.5%;
+    padding-bottom: 5%;
+    font-size: 1.35em;
+}
+#h1-login{
+    padding-top: 2.5%;
+}
+.btn{
+    background-color: #C5ADD0;
+    border: 1px solid #C29BCB;
+    color: black;
+}

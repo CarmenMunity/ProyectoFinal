@@ -1,0 +1,113 @@
+<div class="container w-75 mr-auto" id="div-reg">
+  <h1 id="h1-reg">Crear una nueva cuenta</h1>
+  <form [formGroup]="profileForm" (ngSubmit)="register()" class="form" id="form-reg">
+    <div class="form-group div-form-reg">
+      <label for="name">Nombre:</label>
+      <input id="name" class="form-control" type="text" formControlName="name" [ngClass]="[
+      profileForm.get('name').touched && profileForm.get('name').invalid ? 'is-invalid' : '',
+      profileForm.get('name').dirty && profileForm.get('name').valid ? 'is-valid' : ''
+      ]">
+      <div class="invalid-feedback">Este campo es obligatorio</div>
+    </div>
+    <div class="form-group div-form-reg">
+      <label for="surname">Apellidos:</label>
+      <input id="surname" class="form-control" type="text" formControlName="surname" [ngClass]="[
+      profileForm.get('surname').touched && profileForm.get('surname').invalid ? 'is-invalid' : '',
+      profileForm.get('surname').dirty && profileForm.get('surname').valid ? 'is-valid' : ''
+      ]">
+      <div class="invalid-feedback">Este campo es obligatorio</div>
+    </div>
+    <div class="form-group div-form-reg">
+      <label for="login">Nombre de usuario:</label>
+      <input id="login" class="form-control" type="text" formControlName="login" [ngClass]="[
+      profileForm.get('login').touched && profileForm.get('login').invalid ? 'is-invalid' : '',
+      profileForm.get('login').dirty && profileForm.get('login').valid ? 'is-valid' : ''
+      ]">
+      <div class="invalid-feedback">Este campo es obligatorio</div>
+    </div>
+    <div class="form-group div-form-reg">
+      <label for="email">Email:</label>
+      <input id="email" class="form-control" type="text" formControlName="email" [ngClass]="[
+      profileForm.get('email').touched && profileForm.get('email').invalid ? 'is-invalid' : '',
+      emailExists ? 'is-invalid' : '',
+      profileForm.get('email').dirty && profileForm.get('email').valid ? 'is-valid' : ''
+      ]">
+      <div class="invalid-feedback">
+        <span *ngIf="profileForm.get('email').hasError('required')">Este campo es obligatorio</span>
+        <span *ngIf="profileForm.get('email').hasError('email') && profileForm.get('email').touched">El email no es
+          correcto</span>
+        <span *ngIf="profileForm.get('email').hasError('exist')">El email ya está en uso</span>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class=" col-md-6">
+        <div class="form-group">
+          <label for="password1">Contraseña:</label>
+          <input id="password1" class="form-control" type="password" formControlName="password1" [ngClass]="[
+          profileForm.get('password1').touched && profileForm.get('password1').invalid ? 'is-invalid' : '',
+          profileForm.get('password1').dirty && profileForm.get('password1').valid ? 'is-valid' : ''
+          ]">
+          <div class="invalid-feedback">
+            <span *ngIf="profileForm.get('password1').hasError('required')">Este campo es obligatorio</span>
+          </div>
+          <div class="patternPassword"
+            *ngIf="profileForm.get('password1').dirty && !profileForm.get('password1').hasError('required')">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <small
+                  [ngClass]="profileForm.get('password1').hasError('mayus') ? 'text-danger' : 'text-success'">Mayúscula</small>
+                <small class="text-black-50"> |</small>
+              </li>
+              <li class="list-inline-item text-black-50">
+                <small
+                  [ngClass]="profileForm.get('password1').hasError('minus') ? 'text-danger' : 'text-success'">Minúscula</small>
+                <small class="text-black-50"> |</small>
+              </li>
+              <li class="list-inline-item text-black-50">
+                <small
+                  [ngClass]="profileForm.get('password1').hasError('number') ? 'text-danger' : 'text-success'">Número</small>
+                <small class="text-black-50"> |</small>
+              </li>
+              <li class="list-inline-item text-black-50">
+                <small
+                  [ngClass]="profileForm.get('password1').hasError('symbol') ? 'text-danger' : 'text-success'">Símbolo
+                  @#$%^&+=</small>
+                <small class="text-black-50"> |</small>
+              </li>
+              <li class="list-inline-item text-black-50">
+                <small [ngClass]="profileForm.get('password1').hasError('count') ? 'text-danger' : 'text-success'">8 o
+                  más caracteres</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class="form-group">
+          <label>Repita la contraseña:</label>
+          <input class="form-control" type="password" formControlName="password2" [ngClass]="[
+          profileForm.get('password2').touched && profileForm.get('password2').invalid ? 'is-invalid' : '',
+          profileForm.get('password2').dirty && profileForm.get('password2').valid ? 'is-valid' : ''
+          ]">
+          <div class="invalid-feedback">
+            <span *ngIf="profileForm.get('password2').hasError('required')">Este campo es obligatorio</span>
+            <span *ngIf="profileForm.errors != null && profileForm.errors.passwordDifferent">Las contraseñas no
+              coinciden</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group div-form-reg">
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="customFile" accept="image/png, image/jpeg">
+        <label class="custom-file-label" for="customFile">Seleccione un elemento</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success btn-block " [disabled]="!profileForm.valid">
+        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [hidden]="!showSpinner"></span>
+        Crear cuenta
+      </button>
+    </div>
+  </form>
+</div>

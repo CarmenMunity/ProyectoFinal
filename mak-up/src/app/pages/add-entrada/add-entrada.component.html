@@ -1,0 +1,70 @@
+<div class="container" id="div-reg">
+  <h1 id="h1-reg">Introducir un nueva Entrada</h1>
+  <form [formGroup]="profileForm" class="form" id="form-reg">
+    <div class="form-group div-form-reg">
+      <label for="title">Título:</label>
+      <input id="title" class="form-control" type="text" formControlName="title" [ngClass]="[
+      profileForm.get('title').touched && profileForm.get('title').invalid ? 'is-invalid' : '',
+      profileForm.get('title').dirty && profileForm.get('title').valid ? 'is-valid' : ''
+      ]">
+      <div class="invalid-feedback">Este campo es obligatorio</div>
+    </div>
+    <div class="form-group div-form-reg">
+      <label for="description">Descripción:</label>
+      <textarea id="description" class="form-control" type="text" formControlName="description" [ngClass]="[
+      profileForm.get('description').touched && profileForm.get('description').invalid ? 'is-invalid' : '',
+      profileForm.get('description').dirty && profileForm.get('description').valid ? 'is-valid' : ''
+      ]"></textarea>
+      <div class="invalid-feedback">Este campo es obligatorio</div>
+    </div>
+    <div class="form-group">
+      <label for="tipo">Tipo:</label>
+      <select id="tipo" class="form-control" formControlName="tipo" [ngClass]="[
+      profileForm.get('tipo').touched && profileForm.get('tipo').invalid ? 'is-invalid' : '',
+      profileForm.get('tipo').dirty && profileForm.get('tipo').valid ? 'is-valid' : ''
+      ]">
+        <option selected disabled>Seleccionar un tipo</option>
+        <option *ngFor="let tipo of tipos" value="{{tipo}}">{{tipo}}</option>
+      </select>
+      <div class="invalid-feedback">Este campo es obligatorio</div>
+    </div>
+    <div class="form-group" *ngIf="profileForm.get('tipo').value == 'Producto'">
+      <label for="producto">Producto:</label>
+      <select id="producto" class="form-control" formControlName="producto" [ngClass]="[
+      profileForm.get('producto').touched && profileForm.get('producto').invalid ? 'is-invalid' : '',
+      profileForm.get('producto').dirty && profileForm.get('producto').valid ? 'is-valid' : ''
+      ]">
+        <option selected disabled>Seleccionar un producto</option>
+        <option *ngFor="let producto of productos" value="{{producto}}">{{producto}}</option>
+      </select>
+      <div class="invalid-feedback">Este campo es obligatorio</div>
+    </div>
+    <div class="form-group" *ngIf="profileForm.get('tipo').value == 'Técnica'">
+      <label for="tecnica">Técnica:</label>
+      <select id="tecnica" class="form-control" formControlName="tecnica" [ngClass]="[
+        profileForm.get('tecnica').touched && profileForm.get('tecnica').invalid ? 'is-invalid' : '',
+        profileForm.get('tecnica').dirty && profileForm.get('tecnica').valid ? 'is-valid' : ''
+        ]">
+        <option selected disabled>Seleccionar una tecnica</option>
+        <option *ngFor="let tecnica of tecnicas" value="{{tecnica}}">{{tecnica}}</option>
+      </select>
+      <div class="invalid-feedback">Este campo es obligatorio</div>
+    </div>
+
+    <div class="form-group div-form-reg">
+      <label for="img">Imagen:</label>
+      <input id="img" class="ml-3" type="file" formControlName="img" [ngClass]="[
+      profileForm.get('img').touched && profileForm.get('img').invalid ? 'is-invalid' : '',
+      profileForm.get('img').dirty && profileForm.get('img').valid ? 'is-valid' : ''
+      ]" accept="image/png, image/jpeg">
+      <div class="invalid-feedback">Este campo es obligatorio</div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-success btn-block " [disabled]="!profileForm.valid">
+        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [hidden]="!showSpinner"></span>
+        Añadir Entrada
+      </button>
+    </div>
+  </form>
+</div>

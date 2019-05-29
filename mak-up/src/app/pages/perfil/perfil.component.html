@@ -1,0 +1,83 @@
+<div class="container p-5" id="div-table-profile">
+
+  <form [formGroup]="profileForm" (ngSubmit)="saveChanges()" class="form bg-light">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th scope="row" class="th-profile">
+            <label for="name">Nombre:</label>
+          </th>
+          <td class="td-profile">
+            <input id="name" class="form-control" type="text" formControlName="name" [ngClass]="[ !edit ? 'cleaned' : '',
+            profileForm.get('name').touched && profileForm.get('name').invalid ? 'is-invalid' : '',
+            profileForm.get('name').dirty && profileForm.get('name').valid ? 'is-valid' : ''
+            ]">
+            <div class="invalid-feedback">Este campo es obligatorio</div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row" class="th-profile">
+            <label for="surname">Apellidos:</label>
+          </th>
+          <td class="td-profile text-aling-center">
+            <input id="surname" class="form-control" type="text" formControlName="surname" [ngClass]="[ !edit ? 'cleaned' : '',
+              profileForm.get('surname').touched && profileForm.get('surname').invalid ? 'is-invalid' : '',
+              profileForm.get('surname').dirty && profileForm.get('surname').valid ? 'is-valid' : ''
+              ]">
+            <div class="invalid-feedback">Este campo es obligatorio</div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row" class="th-profile">
+            <label for="email">Email:</label>
+          </th>
+          <td class="td-profile">
+            <input id="email" class="form-control" type="text" formControlName="email"
+              [ngClass]="!edit ? 'cleaned' : ''">
+          </td>
+        </tr>
+        <tr>
+          <th scope="row" class="th-profile">
+            <label for="imagen">Imagen:</label>
+          </th>
+          <td *ngIf="!edit" class="td-profile-noInput"><img src="../../../assets/img/usuDefault.png" alt="Smiley face" height="42" width="42"></td>
+          <td *ngIf="edit" class="td-profile">
+            <input id="imagen" class="form-control" type="file" formControlName="imagen" [ngClass]="[!edit ? 'cleaned' : '',
+              profileForm.get('imagen').touched && profileForm.get('imagen').invalid ? 'is-invalid' : '',
+              profileForm.get('imagen').dirty && profileForm.get('imagen').valid ? 'is-valid' : ''
+              ]">
+            <div class="invalid-feedback">Este campo no es obligatorio, pero luego le voy a poner otros errores</div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row" class="th-profile">
+            <label for="login">Nombre de usuario:</label>
+          </th>
+          <td class="td-profile">
+            <input id="login" class="form-control" type="text" formControlName="login" [ngClass]="[
+            profileForm.get('login').touched && profileForm.get('login').invalid ? 'is-invalid' : '',
+            profileForm.get('login').dirty && profileForm.get('login').valid ? 'is-valid' : '',
+            !edit ? 'cleaned' : '']">
+            <div class="invalid-feedback">Este campo es obligatorio</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="form-group " [ngClass]="!edit ? 'd-none' : 'd-flex justify-content-between'">
+      <button type="button" class="btn btn-warning" (click)="cancelEdit()">
+        Cancelar
+      </button>
+      <button type="submit" class=" btn btn-success" (click)="saveChanges()" [disabled]="!profileForm.valid">
+        Guardar cambios
+      </button>
+    </div>
+  </form>
+  <div class="text-right" [ngClass]="edit ? 'd-none' : 'd-flex justify-content-between'">
+    <button type="button" class=" btn btn-info" [routerLink]="['/cambiar-contrasenna']" routerLinkActive="router-link-active">
+      Cambiar contraseña
+    </button>
+    <button type="button" class=" btn btn-info" (click)="editProfile()">
+      Editar perfil
+    </button>
+  </div>
+</div>
