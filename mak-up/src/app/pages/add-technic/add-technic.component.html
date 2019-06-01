@@ -1,37 +1,44 @@
-<div class="container" id="div-reg">
-  <h1 id="h1-reg">Introducir un nueva Técnica</h1>
-  <form [formGroup]="profileForm" class="form" id="form-reg">
-    <div class="form-group div-form-reg">
-      <label for="name">Nombre:</label>
-      <input id="name" class="form-control" type="text" formControlName="name" [ngClass]="[
-      profileForm.get('name').touched && profileForm.get('name').invalid ? 'is-invalid' : '',
-      profileForm.get('name').dirty && profileForm.get('name').valid ? 'is-valid' : ''
-      ]">
-      <div class="invalid-feedback">Este campo es obligatorio</div>
+<div class="container wm-75">
+
+  <form [formGroup]="newTechnicForm" class="form" id="form-new-tec">
+    <h1 class="h2 mb-3 font-weight-normal" id="h1-new-tec">Introducir una nueva Técnica</h1>
+    <div class="form-group row">
+      <label for="name"  class="col-sm-2 col-form-label">Nombre:</label>
+      <div class="col-sm-10">
+        <input id="name" class="form-control" type="text" formControlName="name" [ngClass]="[
+        newTechnicForm.get('name').touched && newTechnicForm.get('name').invalid ? 'is-invalid' : '',
+        newTechnicForm.get('name').dirty && newTechnicForm.get('name').valid ? 'is-valid' : ''
+        ]">
+        <div class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
     </div>
-    <div class="form-group div-form-reg">
-      <label for="description">Descripción:</label>
-      <textarea id="description" class="form-control" type="text" formControlName="description" [ngClass]="[
-      profileForm.get('description').touched && profileForm.get('description').invalid ? 'is-invalid' : '',
-      profileForm.get('description').dirty && profileForm.get('description').valid ? 'is-valid' : ''
-      ]"></textarea>
-      <div class="invalid-feedback">Este campo es obligatorio</div>
+    <div class="form-group row">
+      <label for="description" class="col-sm-2 col-form-label">Descripción:</label>
+      <div class="col-sm-10">
+        <textarea id="description" class="form-control" type="text" formControlName="description" [ngClass]="[
+        newTechnicForm.get('description').touched && newTechnicForm.get('description').invalid ? 'is-invalid' : '',
+        newTechnicForm.get('description').dirty && newTechnicForm.get('description').valid ? 'is-valid' : ''
+        ]"></textarea>
+        <div class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="cat">Categoría:</label>
-      <select id="cat" class="form-control" formControlName="cat" [ngClass]="[
-      profileForm.get('cat').touched && profileForm.get('cat').invalid ? 'is-invalid' : '',
-      profileForm.get('cat').dirty && profileForm.get('cat').valid ? 'is-valid' : ''
-      ]">
-        <option value="noSelected" selected disabled>Seleccionar categoria</option>
-        <option *ngFor="let cat of cats" value="{{cat}}">{{cat}}</option>
-      </select>
-      
-      <div class="invalid-feedback">Este campo es obligatorio</div>
+    <div class="form-group row">
+      <label for="cat"  class="col-sm-2 col-form-label">Categoría:</label>
+      <div class="col-sm-10">
+        <select id="cat" class="form-control" formControlName="cat" [ngClass]="[
+        newTechnicForm.get('cat').touched && newTechnicForm.get('cat').invalid ? 'is-invalid' : '',
+        newTechnicForm.get('cat').dirty && newTechnicForm.get('cat').valid ? 'is-valid' : ''
+        ]">
+          <option value="noSelected" selected disabled>Seleccionar categoria</option>
+          <option *ngFor="let cat of cats" value="{{cat}}">{{cat}}</option>
+        </select>
+
+        <div class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
     </div>
 
     <div class="form-group">
-      <button type="submit" class="btn btn-block btn-estandar" [disabled]="!profileForm.valid">
+      <button type="submit" class="btn btn-block btn-estandar" [disabled]="!newTechnicForm.valid">
         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [hidden]="!showSpinner"></span>
         Crear cuenta
       </button>

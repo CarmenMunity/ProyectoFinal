@@ -8,13 +8,13 @@ import { FormGroup, Validators, FormControl, AbstractControl, ValidatorFn, Async
   styleUrls: ['./add-technic.component.css']
 })
 export class AddTechnicComponent implements OnInit {
-  profileForm: FormGroup;
+  newTechnicForm: FormGroup;
 
   cats= ["Esto es un ejemplo", "luego se coge", "las categorías de la ", "base de datos"];
   constructor() { }
 
   ngOnInit() {
-    this.profileForm = new FormGroup({
+    this.newTechnicForm = new FormGroup({
       name: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
       cat: new FormControl(null, [Validators.required])
@@ -23,7 +23,7 @@ export class AddTechnicComponent implements OnInit {
          // this.validatePassword('password1', 'password2')
         ]
       });
-      this.profileForm.get('cat').setValue(this.cats[0]);
+      this.newTechnicForm.get('cat').setValue(this.cats[0]);
   }
 
 }

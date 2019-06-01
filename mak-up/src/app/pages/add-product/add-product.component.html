@@ -1,60 +1,77 @@
-<div class="container" id="div-reg">
-  <h1 id="h1-reg">Introducir un nuevo Producto</h1>
-  <form [formGroup]="profileForm" class="form" id="form-reg">
-    <div class="form-group div-form-reg">
-      <label for="name">Nombre:</label>
-      <input id="name" class="form-control" type="text" formControlName="name" [ngClass]="[
-      profileForm.get('name').touched && profileForm.get('name').invalid ? 'is-invalid' : '',
-      profileForm.get('name').dirty && profileForm.get('name').valid ? 'is-valid' : ''
-      ]">
-      <div class="invalid-feedback">Este campo es obligatorio</div>
+<div class="container" id="div-new-prod">
+
+  <form [formGroup]="profileForm" class="form" id="form-new-prod">
+    <h1 class="h2 mb-3 font-weight-normal" id="h1-new-prod">Introducir un nuevo Producto</h1>
+    <div class="form-group row">
+      <label for="name" class="col-sm-2 col-form-label">Nombre:</label>
+      <div class="col-sm-10">
+        <input id="name" class="form-control" type="text" formControlName="name" [ngClass]="[
+        profileForm.get('name').touched && profileForm.get('name').invalid ? 'is-invalid' : '',
+        profileForm.get('name').dirty && profileForm.get('name').valid ? 'is-valid' : ''
+        ]">
+        <div class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
     </div>
-    <div class="form-group div-form-reg">
-      <label for="description">Descripción:</label>
-      <textarea id="description" class="form-control" type="text" formControlName="description" [ngClass]="[
-      profileForm.get('description').touched && profileForm.get('description').invalid ? 'is-invalid' : '',
-      profileForm.get('description').dirty && profileForm.get('description').valid ? 'is-valid' : ''
-      ]"></textarea>
-      <div class="invalid-feedback">Este campo es obligatorio</div>
+    <div class="form-group row">
+      <label for="description" class="col-sm-2 col-form-label">Descripción:</label>
+      <div class="col-sm-10">
+
+        <textarea id="description" class="form-control" type="text" formControlName="description" [ngClass]="[
+        profileForm.get('description').touched && profileForm.get('description').invalid ? 'is-invalid' : '',
+        profileForm.get('description').dirty && profileForm.get('description').valid ? 'is-valid' : ''
+        ]"></textarea>
+        <div class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="tipo">Tipo:</label>
-      <select id="tipo" class="form-control" formControlName="tipo" [ngClass]="[
-      profileForm.get('tipo').touched && profileForm.get('tipo').invalid ? 'is-invalid' : '',
-      profileForm.get('tipo').dirty && profileForm.get('tipo').valid ? 'is-valid' : ''
-      ]">
-        <option selected disabled>Seleccionar un tipo</option>
-        <option *ngFor="let tipo of tipos" value="{{tipo}}">{{tipo}}</option>
-      </select>
-      <div class="invalid-feedback">Este campo es obligatorio</div>
+    <div class="form-group row">
+      <label for="tipo" class="col-sm-2 col-form-label">Tipo:</label>
+      <div class="col-sm-10">
+        <select id="tipo" class="form-control" formControlName="tipo" [ngClass]="[
+        profileForm.get('tipo').touched && profileForm.get('tipo').invalid ? 'is-invalid' : '',
+        profileForm.get('tipo').dirty && profileForm.get('tipo').valid ? 'is-valid' : ''
+        ]">
+          <option selected disabled>Seleccionar un tipo</option>
+          <option *ngFor="let tipo of tipos" value="{{tipo}}">{{tipo}}</option>
+        </select>
+        <div class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
     </div>
 
-    <div class="form-group div-form-reg">
-      <label for="ingredientes">Ingredintes:</label>
-      <textarea id="ingredientes" class="form-control" type="text" formControlName="ingredientes" [ngClass]="[
-      profileForm.get('ingredientes').touched && profileForm.get('ingredientes').invalid ? 'is-invalid' : '',
-      profileForm.get('ingredientes').dirty && profileForm.get('ingredientes').valid ? 'is-valid' : ''
-      ]"></textarea>
-      <div class="invalid-feedback">Este campo es obligatorio</div>
+    <div class="form-group row">
+      <label for="ingredientes" class="col-sm-2 col-form-label">Ingredintes:</label>
+      <div class="col-sm-10">
+
+        <textarea id="ingredientes" class="form-control" type="text" formControlName="ingredientes" [ngClass]="[
+        profileForm.get('ingredientes').touched && profileForm.get('ingredientes').invalid ? 'is-invalid' : '',
+        profileForm.get('ingredientes').dirty && profileForm.get('ingredientes').valid ? 'is-valid' : ''
+        ]"></textarea>
+        <div class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
     </div>
-    <div class="form-group div-form-reg">
-      <label for="marca">Marca:</label>
-      <input id="marca" class="form-control" type="text" formControlName="marca" [ngClass]="[
-      profileForm.get('marca').touched && profileForm.get('marca').invalid ? 'is-invalid' : '',
-      profileForm.get('marca').dirty && profileForm.get('marca').valid ? 'is-valid' : ''
-      ]">
-      <div class="invalid-feedback">Este campo es obligatorio</div>
+    <div class="form-group row">
+      <label for="marca" class="col-sm-2 col-form-label">Marca:</label>
+      <div class="col-sm-10">
+
+        <input id="marca" class="form-control" type="text" formControlName="marca" [ngClass]="[
+        profileForm.get('marca').touched && profileForm.get('marca').invalid ? 'is-invalid' : '',
+        profileForm.get('marca').dirty && profileForm.get('marca').valid ? 'is-valid' : ''
+        ]">
+        <div class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="cat">Categoría:</label>
-      <select id="cat" class="form-control" formControlName="cat" [ngClass]="[
-      profileForm.get('cat').touched && profileForm.get('cat').invalid ? 'is-invalid' : '',
-      profileForm.get('cat').dirty && profileForm.get('cat').valid ? 'is-valid' : ''
-      ]">
-        <option value="noSelected" selected disabled>Seleccionar categoria</option>
-        <option *ngFor="let cat of cats" value="{{cat}}">{{cat}}</option>
-      </select>
-      <div class="invalid-feedback">Este campo es obligatorio</div>
+    <div class="form-group row">
+      <label for="cat" class="col-sm-2 col-form-label">Categoría:</label>
+      <div class="col-sm-10">
+
+        <select id="cat" class="form-control" formControlName="cat" [ngClass]="[
+        profileForm.get('cat').touched && profileForm.get('cat').invalid ? 'is-invalid' : '',
+        profileForm.get('cat').dirty && profileForm.get('cat').valid ? 'is-valid' : ''
+        ]">
+          <option value="noSelected" selected disabled>Seleccionar categoria</option>
+          <option *ngFor="let cat of cats" value="{{cat}}">{{cat}}</option>
+        </select>
+        <div class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
     </div>
 
     <div class="form-group">
