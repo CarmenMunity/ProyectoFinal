@@ -15,7 +15,10 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { AddTechnicComponent } from './add-technic/add-technic.component';
 import { AddEntradaComponent } from './add-entrada/add-entrada.component';
 import { PerfilComponent } from './perfil/perfil.component';
-
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { ShowCategoryComponent } from './show-category/show-category.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
+import { EditTechnicComponent } from './edit-technic/edit-technic.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +27,11 @@ import { PerfilComponent } from './perfil/perfil.component';
     AddProductComponent,
     AddTechnicComponent,
     AddEntradaComponent,
-    PerfilComponent
+    AddCategoryComponent,
+    PerfilComponent,
+    ShowCategoryComponent,
+    EditProductComponent,
+    EditTechnicComponent
   ],
   exports: [
     PagesComponent,

@@ -1,0 +1,28 @@
+<div class="container w-75">
+  <form [formGroup]="addCategoryForm" class="form" id="form-add-cat">
+    <h1 class="h2 mb-3 font-weight-normal"> Añadir Categoría </h1>
+    <div class="form-group row">
+      <label for="name" class="col-sm-2 col-form-label">Nombre:</label>
+      <div class="col-sm-10">
+        <input type="text" formControlName="name" class="form-control" id="name" placeholder="Nombre" [ngClass]="[
+        addCategoryForm.get('name').touched && addCategoryForm.get('name').invalid ? 'is-invalid' : '',
+        addCategoryForm.get('name').dirty && addCategoryForm.get('name').valid ? 'is-valid' : ''
+        ]">
+        <div class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="description" class="col-sm-2 col-form-label">Descripción:</label>
+      <div class="col-sm-10">
+        <textarea type="description" formControlName="description" class="form-control" id="description" placeholder="Escribe la descripción de la categoría" [ngClass]="[
+        addCategoryForm.get('description').touched && addCategoryForm.get('description').invalid ? 'is-invalid' : '',
+        addCategoryForm.get('description').dirty && addCategoryForm.get('description').valid ? 'is-valid' : ''
+        ]"></textarea>
+        <div class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
+    </div>
+    <div class="form-group text-right">
+        <button type="submit"  class="btn btn-block btn-estandar" [disabled]="!addCategoryForm.valid">Enviar</button>
+    </div>
+  </form>
+</div>

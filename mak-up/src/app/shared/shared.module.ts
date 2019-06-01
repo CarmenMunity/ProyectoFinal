@@ -4,6 +4,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { PagesComponent } from '../pages/pages.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 //Routes
 import { APP_ROUTES } from '../app.routes';
 
@@ -15,7 +17,8 @@ import { APP_ROUTES } from '../app.routes';
   ],
   imports: [
     APP_ROUTES,
-    CommonModule
+    CommonModule,
+    NgbModule
   ],
   exports: [
     HeaderComponent,

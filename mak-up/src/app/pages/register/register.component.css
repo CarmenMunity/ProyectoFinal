@@ -6,3 +6,8 @@
 #h1-reg{
     padding-top: 2.5%;
 }
+.btn-estandar{
+    background-color: #C5ADD0;
+    border: 1px solid #C29BCB;
+    color: black;
+}

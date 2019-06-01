@@ -1,0 +1,53 @@
+<div class="container p-5" id="div-table-profile">
+
+  <form [formGroup]="modCategoryForm" (ngSubmit)="saveChanges()" class="form">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th scope="row" class="th-profile">
+            <label for="name">Nombre:</label>
+          </th>
+          <td class="td-profile">
+            <select id="name" class="form-control" formControlName="name" [ngClass]="[ !edit ? 'cleaned' : '',
+            modCategoryForm.get('name').touched && modCategoryForm.get('name').invalid ? 'is-invalid' : '',
+            modCategoryForm.get('name').dirty && modCategoryForm.get('name').valid ? 'is-valid' : ''
+            ]">
+              <option selected disabled>Seleccionar un nombre</option>
+            </select>
+            <div class="invalid-feedback">Este campo es obligatorio</div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row" class="th-profile">
+            <label for="description">Descripción:</label>
+          </th>
+          <td class="td-profile text-aling-center">
+            <textarea type="description" formControlName="description" class="form-control" id="description"
+            placeholder="Escribe la descripción de la categoría" [ngClass]="[
+            modCategoryForm.get('description').touched && modCategoryForm.get('description').invalid ? 'is-invalid' : '',
+            modCategoryForm.get('description').dirty && modCategoryForm.get('description').valid ? 'is-valid' : ''
+            ]"></textarea>
+            <div class="invalid-feedback">Este campo es obligatorio</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="form-group " [ngClass]="!edit ? 'd-none' : 'd-flex justify-content-between'">
+      <button type="button" class="btn btn-warning btn-estandar" (click)="cancelEdit()">
+        Cancelar
+      </button>
+      <button type="submit" class=" btn btn-success btn-estandar" (click)="saveChanges()" [disabled]="!modCategoryForm.valid">
+        Guardar cambios
+      </button>
+    </div>
+  </form>
+  <div class="text-right" [ngClass]="edit ? 'd-none' : 'd-flex justify-content-between'">
+    <button type="button" class=" btn btn-info btn-estandar" 
+      routerLinkActive="router-link-active">
+      Borrar categoría
+    </button>
+    <button type="button" class=" btn btn-info btn-estandar" (click)="editProfile()">
+      Editar perfil
+    </button>
+  </div>
+</div>

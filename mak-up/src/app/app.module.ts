@@ -11,9 +11,10 @@ import { AppComponent } from './app.component';
 //Routes
 import { APP_ROUTES } from './app.routes';
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     APP_ROUTES,
@@ -21,6 +22,9 @@ import { APP_ROUTES } from './app.routes';
     SharedModule,
     BrowserModule,
     NgbModule
+  ],
+  exports: [
+
   ],
   providers: [],
   bootstrap: [AppComponent]

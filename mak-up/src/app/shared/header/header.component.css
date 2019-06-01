@@ -7,3 +7,17 @@ nav{
     border: 1px solid black;
 
 }
+#logo{
+    margin:0;
+    padding: 0;
+    width: auto;
+    height: 4em;
+}
+.dropdown-item{
+    background-color: #C5ADD0;
+    color: black;
+}
+.dropdownItems{
+    background-color: #C5ADD0;
+    color: black;
+}

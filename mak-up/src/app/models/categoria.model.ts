@@ -3,8 +3,8 @@ export class Categoria {
     public nombre: string;
     public descripcion: string;
 
-    constructor(id, nombre, descripcion){
-        this.id = id;
+    constructor(id= null, nombre, descripcion){
+        this.id= id;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
