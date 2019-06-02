@@ -7,7 +7,8 @@ import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 //Pages
 import { AppComponent } from './app.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from  '@angular/forms';
 //Routes
 import { APP_ROUTES } from './app.routes';
 
@@ -21,7 +22,9 @@ import { APP_ROUTES } from './app.routes';
     PagesModule,
     SharedModule,
     BrowserModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
+    FormsModule
   ],
   exports: [
 
