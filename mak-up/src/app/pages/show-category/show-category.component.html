@@ -7,15 +7,21 @@
           <th scope="row" class="th-profile">
             <label for="name">Nombre:</label>
           </th>
-          <td class="td-profile">
+          <td *ngIf="!edit" class="td-profile">
             <select id="name" class="form-control" formControlName="name" (change)="selectOption($event.target.value)"
-            [(ngModel)]="selected" [ngClass]="[ 
+            [ngClass]="[ modCategoryForm.get('name').touched && modCategoryForm.get('name').invalid ? 'is-invalid' : '',
+            modCategoryForm.get('name').dirty && modCategoryForm.get('name').valid ? 'is-valid' : ''
+            ]">
+              <option disabled>Seleccionar un nombre</option>
+              <option *ngFor="let categoria of categorias"  [value]="categoria['Id']">{{ categoria['Nombre'] }}</option>
+            </select>
+            <div class="invalid-feedback">Este campo es obligatorio</div>
+          </td>
+          <td *ngIf="edit" class="td-profile">
+            <input type="text" id="name" class="form-control" formControlName="name" [ngClass]="[
             modCategoryForm.get('name').touched && modCategoryForm.get('name').invalid ? 'is-invalid' : '',
             modCategoryForm.get('name').dirty && modCategoryForm.get('name').valid ? 'is-valid' : ''
             ]">
-              <option selected disabled>Seleccionar un nombre</option>
-              <option *ngFor="let categoria of categorias"  [value]="categoria['Id']">{{ categoria['Nombre'] }}</option>
-            </select>
             <div class="invalid-feedback">Este campo es obligatorio</div>
           </td>
         </tr>
@@ -25,7 +31,7 @@
           </th>
           <td class="td-profile text-aling-center">
             <textarea type="description" formControlName="description" class="form-control" id="description"
-            placeholder="Escribe la descripción de la categoría" [ngClass]="[ !edit ? 'cleaned' : '',
+            placeholder="" [ngClass]="[ !edit ? 'cleaned' : '',
             modCategoryForm.get('description').touched && modCategoryForm.get('description').invalid ? 'is-invalid' : '',
             modCategoryForm.get('description').dirty && modCategoryForm.get('description').valid ? 'is-valid' : ''
             ]" value="Hola"></textarea>
@@ -44,8 +50,7 @@
     </div>
   </form>
   <div class="text-right" [ngClass]="edit ? 'd-none' : 'd-flex justify-content-between'">
-    <button type="button" class=" btn btn-info btn-estandar" 
-      routerLinkActive="router-link-active">
+    <button type="button" class=" btn btn-info btn-estandar" (click)="borrar()">
       Borrar categoría
     </button>
     <button type="button" class=" btn btn-info btn-estandar" (click)="editProfile()">

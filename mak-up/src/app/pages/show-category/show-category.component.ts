@@ -16,7 +16,8 @@ export class ShowCategoryComponent implements OnInit {
   categorias: Categoria [];
   selectedCat:  Categoria  = { id :  null , nombre:null, descripcion:  null};
   selectedOption: string;
-
+  id: number;
+  prueba = ["hoola","hola1"];
   constructor(
     public router: Router,
     private apiService: ApiService
@@ -24,28 +25,38 @@ export class ShowCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.apiService.readCategoria().subscribe((categorias: Categoria [])=>{
-      this.categorias = categorias;
-    });
-    /*setTimeout(() => {
-      this.categorias.forEach((categoria)=>{
-       console.log(categoria['Descripcion']);
-        
-      });
-      
-    }, 1000);*/
+    this.leer();
 
     this.modCategoryForm = new FormGroup({
       name: new FormControl(null, Validators.required),
       description: new FormControl({value:null,disabled: true}, Validators.required),
     }); 
-
+    this.modCategoryForm.get('name').setValue(this.prueba[0]);
+    /*setTimeout(() => {
+      this.categorias.forEach((categoria)=>{
+       console.log(categoria['Descripcion']);
+        
+      });
+      this.modCategoryForm.get('name').setValue(this.categorias[0]["Nombre"]);
+      
+    }, 1000);*/
+    
+  }
+  leer(){
+    this.apiService.readCategoria().subscribe((categorias: Categoria [])=>{
+      this.categorias = categorias;
+    });
     
   }
   selectOption(id: number) {
     //getted from event
-    console.log(id);
-    this.modCategoryForm.get('description').setValue(this.categorias[id]["Descripcion"]);
+    //console.log(id); 
+    this.categorias.forEach((categoria)=>{
+      if(categoria["Id"]==id){
+        this.modCategoryForm.get('description').setValue(categoria["Descripcion"]);
+      }
+     });
+    this.id=id;
   }
   saveChanges() {
     this.msgVerify().then((value) => {
@@ -62,8 +73,14 @@ export class ShowCategoryComponent implements OnInit {
     this.edit = true;
     console.log("Le he dado al botón: " + this.edit);
 
+    this.categorias.forEach((categoria)=>{
+      if(categoria["Id"]==this.id){
+        this.modCategoryForm.get('name').setValue(categoria["Nombre"]);
+      }
+    });
+
     this.modCategoryForm.get('description').enable();
-  
+    this.leer();
   }
   cancelEdit(){
     this.edit = false;
@@ -71,7 +88,19 @@ export class ShowCategoryComponent implements OnInit {
 
     this.modCategoryForm.get('description').disable();
 
-    //this.modCaregoryForm.get('description').setValue(this.categoria[0].descripcion);
+    this.categorias.forEach((categoria)=>{
+      if(categoria["Id"]==this.id){
+        this.modCategoryForm.get('name').setValue(categoria["Id"]);
+      }
+     });
+    
+    this.selectOption(this.id); 
   }
-
+  borrar(){
+    console.log(this.id);
+    this.apiService.deleteCategoria(this.id).subscribe((categoria: Categoria)=>{
+      console.log("Categoria deleted, ", categoria);
+    });
+  }
+  
 }
