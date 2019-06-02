@@ -12,7 +12,7 @@
             [ngClass]="[ modCategoryForm.get('name').touched && modCategoryForm.get('name').invalid ? 'is-invalid' : '',
             modCategoryForm.get('name').dirty && modCategoryForm.get('name').valid ? 'is-valid' : ''
             ]">
-              <option disabled>Seleccionar un nombre</option>
+              <option disabled>Selecciona un nombre</option>
               <option *ngFor="let categoria of categorias"  [value]="categoria['Id']">{{ categoria['Nombre'] }}</option>
             </select>
             <div class="invalid-feedback">Este campo es obligatorio</div>
@@ -50,10 +50,10 @@
     </div>
   </form>
   <div class="text-right" [ngClass]="edit ? 'd-none' : 'd-flex justify-content-between'">
-    <button type="button" class=" btn btn-info btn-estandar" (click)="borrar()">
+    <button type="button" class=" btn btn-info btn-estandar" (click)="msnBorrar()">
       Borrar categoría
     </button>
-    <button type="button" class=" btn btn-info btn-estandar" (click)="editProfile()">
+    <button type="button" class=" btn btn-info btn-estandar" (click)="editar()">
       Editar
     </button>
   </div>
