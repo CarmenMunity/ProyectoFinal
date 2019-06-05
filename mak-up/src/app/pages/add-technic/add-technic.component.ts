@@ -28,7 +28,7 @@ export class AddTechnicComponent implements OnInit {
     this.leer();
 
     this.newTechnicForm = new FormGroup({
-      name: new FormControl(null, Validators.required),
+      name: new FormControl(null, [Validators.required, this.validateLetras()]),
       description: new FormControl(null, Validators.required),
       categoria: new FormControl(null, [Validators.required])
     });
@@ -52,9 +52,6 @@ export class AddTechnicComponent implements OnInit {
     });
   }
   newTecnica() {
-    /*this.cat.nombre = this.addCategoryForm.get("name").value;
-    this.cat.descripcion = this.addCategoryForm.get("description").value;
-    console.log(this.cat);*/
     var e = this.validationName();
     //console.log(e);
     if(!e){
@@ -112,16 +109,15 @@ export class AddTechnicComponent implements OnInit {
   validateLetras(): ValidatorFn{
 
     return (control: AbstractControl) => {
-      //cambiar el código ante de  2099
-      var patternRexpDate: RegExp = /([1][9][4-9][0-9]|[2][0][0-9][0-9])(-)(0[1-9]|1[0-2])(-)([0-2][0-9]|3[0-1])/;
-      var date = control.value;
+      var regExp: RegExp = /[0-9]/;
+      var name = control.value;
 
-      if (date) {
-        //console.log("fecha: " + date);
-        //console.log("La expresion regular es : " + patternRexpDate.test(date));
+      if (name) {
+        //console.log("nombre: " + name);
+        //console.log("La expresion regular es : " + regExp.test(name));
 
-        if (!patternRexpDate.test(date) ) {
-          return {invalidDate : true};
+        if (regExp.test(name) ) {
+          return {invalidName : true};
         }
 
       }

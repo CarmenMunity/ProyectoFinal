@@ -4,6 +4,7 @@ import { Observable } from  'rxjs';
 //modules
 import {Categoria} from './models/categoria.model';
 import { Tecnica } from './models/tecnica.model';
+import { Producto } from './models/producto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,7 @@ export class ApiService {
     return this.httpClient.post<Tecnica>(`${this.PHP_API_SERVER}/php-mysql/api/crearTecnica.php`, tecnica);
   }
   //Productos
-  /*readProducto(): Observable<Producto[]>{
+  readProducto(): Observable<Producto[]>{
     return this.httpClient.get<Producto[]>(`${this.PHP_API_SERVER}/php-mysql/api/leerProducto.php`);
   }
   deleteProducto(id: number){
@@ -51,5 +52,5 @@ export class ApiService {
   }
   createProducto(producto: Producto): Observable<Producto>{
     return this.httpClient.post<Producto>(`${this.PHP_API_SERVER}/php-mysql/api/crearProducto.php`, producto);
-  }*/
+  }
 }

@@ -9,7 +9,10 @@
         newTechnicForm.get('name').touched && newTechnicForm.get('name').invalid ? 'is-invalid' : '',
         newTechnicForm.get('name').dirty && newTechnicForm.get('name').valid ? 'is-valid' : ''
         ]">
-        <div class="invalid-feedback">Este campo es obligatorio</div>
+        <div class="invalid-feedback">
+          <span *ngIf="newTechnicForm.get('name').hasError('required')">Este campo es obligatorio</span>
+          <span *ngIf="newTechnicForm.get('name').hasError('invalidName') && newTechnicForm.get('name').touched">El nombre solo puede contener letras.</span>
+        </div>
       </div>
     </div>
     <div class="form-group row">
