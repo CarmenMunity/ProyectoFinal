@@ -17,9 +17,10 @@ if(isset($postdata) && !empty($postdata))
   $id    = mysqli_real_escape_string($con, (int)$request->id);
   $nombre = mysqli_real_escape_string($con, trim($request->name));
   $descripcion = mysqli_real_escape_string($con, trim($request->description));
-
+  $categoria = mysqli_real_escape_string($con, (int)($request->categoria));
+  
   // Update.
-  $sql = "UPDATE `categoria` SET `Nombre`='$nombre',`Descripcion`='$descripcion' WHERE `id` = '{$id}' LIMIT 1";
+  $sql = "UPDATE `tecnica` SET `Nombre`='$nombre',`Descripcion`='$descripcion',`Categoria`='$categoria' WHERE `id` = '{$id}' LIMIT 1";
 
   if(mysqli_query($con, $sql))
   {

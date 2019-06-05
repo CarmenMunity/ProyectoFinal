@@ -17,7 +17,7 @@ export class ShowCategoryComponent implements OnInit {
   selectedCat: Categoria = { id: null, nombre: null, descripcion: null };
   selectedOption: string;
   id: number;
-  prueba = ["hoola", "hola1"];
+  
   constructor(
     public router: Router,
     private apiService: ApiService
@@ -28,7 +28,7 @@ export class ShowCategoryComponent implements OnInit {
     this.leer();
 
     this.modCategoryForm = new FormGroup({
-      name: new FormControl(null, Validators.required),
+      name: new FormControl(null, [Validators.required, Validators.maxLength(25)]),
       description: new FormControl({ value: null, disabled: true }, Validators.required),
     });
 
@@ -60,6 +60,16 @@ export class ShowCategoryComponent implements OnInit {
     this.id = id;
   }
   saveChanges() {
+    var e = this.validationName();
+    //console.log(e);
+    if(e == false){
+      return Swal.fire({
+        type: 'error',
+        title: 'Lo sentimos, el nombre no se puede repetir.',
+        text: 'Intentelo de nuevo con otro nombre para la categoria.'
+      })
+      
+    }
     var nombre;
     this.categorias.forEach((categoria) => {
       if (categoria["Id"] == this.id) {
@@ -77,7 +87,7 @@ export class ShowCategoryComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         Swal.fire(
-          'Guardad!',
+          'Guardado!',
           nombre + ' se ha modificado.',
           'success'
         )
@@ -135,7 +145,7 @@ export class ShowCategoryComponent implements OnInit {
       }
     });
     Swal.fire({
-      title: '¿Está seguro que quieres borrar?',
+      title: '¿Está seguro que quieres borrar ' + nombre + ' ?' ,
       text: "No puede revertir después de aceptar este mensaje.",
       type: 'warning',
       showCancelButton: true,
@@ -168,5 +178,17 @@ export class ShowCategoryComponent implements OnInit {
       //console.log("Categoria editada", categoria);
     });
     this.cancelEdit();
+  }
+  validationName() {
+    var e = true;
+    var nombre = this.modCategoryForm.get('name').value;
+    //console.log(nombre);
+    this.categorias.forEach((categoria) => {
+      if (categoria["Nombre"].toUpperCase() == nombre.toUpperCase())  {
+        //console.log(categoria["Nombre"] + ' = ' + nombre);
+        e = false;
+      }
+    });
+    return e;
   }
 }

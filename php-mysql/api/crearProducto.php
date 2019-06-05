@@ -19,20 +19,27 @@ if(isset($postdata) && !empty($postdata))
   // Sanitize.
   $nombre = mysqli_real_escape_string($con, trim($request->name));
   $descripcion = mysqli_real_escape_string($con, trim($request->description));
-
+  $tipo = mysqli_real_escape_string($con, trim($request->tipo));
+  $ingredientes = mysqli_real_escape_string($con, trim($request->ingredientes));
+  $marca = mysqli_real_escape_string($con, trim($request->marca));
+  $categoria = mysqli_real_escape_string($con, (int)($request->categoria));
 
   // Create.
-  $sql = "INSERT INTO `categoria`(`Id`,`Nombre`,`Descripcion`) VALUES (null,'{$nombre}','{$descripcion}')";
+  $sql = "INSERT INTO `producto`(`Id`,`Nombre`,`Descripcion`, `Tipo`='$tipo', `Ingredientes`='$ingredientes', `Marca`='$marca', `Categoria`) VALUES (null,'{$nombre}','{$descripcion}','{$categoria}')";
 
   if(mysqli_query($con,$sql))
   {
     http_response_code(201);
-    $categoria = [
+    $producto = [
       'Nombre' => $nombre,
       'Descripcion' => $descripcion,
+      'Tipo' => $tipo,
+      'Ingredientes' => $ingredientes,
+      'Marca' => $marca,
+      'Categoria' => $categoria,
       'Id'    => mysqli_insert_id($con)
     ];
-    echo json_encode($categoria);
+    echo json_encode($producto);
   }
   else
   {

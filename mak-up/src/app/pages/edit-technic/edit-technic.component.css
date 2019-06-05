@@ -17,3 +17,10 @@
     padding-top: 100px;
     padding-bottom: 100px;
 }
+.tr-desc{
+    height: 125px;
+}
+.text-desc{
+    height: 125px;
+    overflow: hidden;
+}

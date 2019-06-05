@@ -19,20 +19,20 @@ if(isset($postdata) && !empty($postdata))
   // Sanitize.
   $nombre = mysqli_real_escape_string($con, trim($request->name));
   $descripcion = mysqli_real_escape_string($con, trim($request->description));
-
-
+  $categoria = mysqli_real_escape_string($con, (int)($request->categoria));
   // Create.
-  $sql = "INSERT INTO `categoria`(`Id`,`Nombre`,`Descripcion`) VALUES (null,'{$nombre}','{$descripcion}')";
+  $sql = "INSERT INTO `tecnica`(`Id`,`Nombre`,`Descripcion`, `Categoria`) VALUES (null,'{$nombre}','{$descripcion}','{$categoria}')";
 
   if(mysqli_query($con,$sql))
   {
     http_response_code(201);
-    $categoria = [
+    $tecnica = [
       'Nombre' => $nombre,
       'Descripcion' => $descripcion,
+      'Categoria' => $categoria,
       'Id'    => mysqli_insert_id($con)
     ];
-    echo json_encode($categoria);
+    echo json_encode($tecnica);
   }
   else
   {

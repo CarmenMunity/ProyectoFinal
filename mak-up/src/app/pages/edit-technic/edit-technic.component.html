@@ -8,11 +8,12 @@
             <label for="name">Nombre:</label>
           </th>
           <td *ngIf="!edit" class="td-profile">
-            <select id="name" class="form-control" formControlName="name" [ngClass]="[ 
-            modTechnicForm.get('name').touched && modTechnicForm.get('name').invalid ? 'is-invalid' : '',
+            <select id="name" class="form-control" formControlName="name" (change)="selectOption($event.target.value)"
+            [ngClass]="[ modTechnicForm.get('name').touched && modTechnicForm.get('name').invalid ? 'is-invalid' : '',
             modTechnicForm.get('name').dirty && modTechnicForm.get('name').valid ? 'is-valid' : ''
             ]">
               <option selected disabled>Seleccionar un nombre</option>
+              <option *ngFor="let tecnica of tecnicas" [value]="tecnica['Id']">{{ tecnica['Nombre'] }}</option>
             </select>
             <div class="invalid-feedback">Este campo es obligatorio</div>
           </td>
@@ -24,12 +25,12 @@
             <div class="invalid-feedback">Este campo es obligatorio</div>
           </td>
         </tr>
-        <tr>
-          <th scope="row" class="th-profile">
+        <tr class="tr-desc">
+          <th scope="row" class="th-profile hm-50">
             <label for="description">Descripción:</label>
           </th>
-          <td class="td-profile text-aling-center">
-            <textarea type="description" formControlName="description" class="form-control" id="description"
+          <td class="td-profile text-aling-center hm-50">
+            <textarea type="description" formControlName="description" class="form-control text-desc" id="description"
               placeholder="Escribe la descripción de la categoría" [ngClass]="[ !edit ? 'cleaned' : '',
             modTechnicForm.get('description').touched && modTechnicForm.get('description').invalid ? 'is-invalid' : '',
             modTechnicForm.get('description').dirty && modTechnicForm.get('description').valid ? 'is-valid' : ''
@@ -41,12 +42,20 @@
           <th scope="row" class="th-profile">
             <label for="categoria">Categoria:</label>
           </th>
-          <td class="td-profile">
+          <td *ngIf="!edit" class="td-profile">
+            <input type="text" id="categoria" class="form-control" formControlName="categoria" [ngClass]="[ !edit ? 'cleaned' : '',
+            modTechnicForm.get('categoria').touched && modTechnicForm.get('categoria').invalid ? 'is-invalid' : '',
+            modTechnicForm.get('categoria').dirty && modTechnicForm.get('categoria').valid ? 'is-valid' : ''
+            ]">
+            <div class="invalid-feedback">Este campo es obligatorio</div>
+          </td>
+          <td *ngIf="edit" class="td-profile">
             <select id="categoria" class="form-control" formControlName="categoria" [ngClass]="[ !edit ? 'cleaned' : '',
             modTechnicForm.get('categoria').touched && modTechnicForm.get('categoria').invalid ? 'is-invalid' : '',
             modTechnicForm.get('categoria').dirty && modTechnicForm.get('categoria').valid ? 'is-valid' : ''
             ]">
               <option selected disabled>Seleccionar un nombre</option>
+              <option *ngFor="let categoria of categorias"  [value]="categoria['Id']">{{ categoria['Nombre'] }}</option>
             </select>
             <div class="invalid-feedback">Este campo es obligatorio</div>
           </td>
@@ -64,7 +73,7 @@
     </div>
   </form>
   <div class="text-right" [ngClass]="edit ? 'd-none' : 'd-flex justify-content-between'">
-    <button type="button" class=" btn btn-info btn-estandar" routerLinkActive="router-link-active">
+    <button type="button" class=" btn btn-info btn-estandar" (click)="msnBorrar()">
       Borrar Tecnica
     </button>
     <button type="button" class=" btn btn-info btn-estandar" (click)="editProfile()">

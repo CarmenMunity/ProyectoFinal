@@ -17,9 +17,13 @@ if(isset($postdata) && !empty($postdata))
   $id    = mysqli_real_escape_string($con, (int)$request->id);
   $nombre = mysqli_real_escape_string($con, trim($request->name));
   $descripcion = mysqli_real_escape_string($con, trim($request->description));
-
+  $tipo = mysqli_real_escape_string($con, trim($request->tipo));
+  $ingredientes = mysqli_real_escape_string($con, trim($request->ingredientes));
+  $marca = mysqli_real_escape_string($con, trim($request->marca));
+  $categoria = mysqli_real_escape_string($con, (int)($request->categoria));
+  
   // Update.
-  $sql = "UPDATE `categoria` SET `Nombre`='$nombre',`Descripcion`='$descripcion' WHERE `id` = '{$id}' LIMIT 1";
+  $sql = "UPDATE `producto` SET `Nombre`='$nombre',`Descripcion`='$descripcion', `Tipo`='$tipo', `Ingredientes`='$ingredientes', `Marca`='$marca',`Categoria`='$categoria' WHERE `id` = '{$id}' LIMIT 1";
 
   if(mysqli_query($con, $sql))
   {
