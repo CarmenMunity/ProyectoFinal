@@ -8,14 +8,10 @@
             <label for="name">Nombre:</label>
           </th>
           <td *ngIf="!edit" class="td-profile">
-            <select id="name" class="form-control" formControlName="name" (change)="selectOption($event.target.value)"
-            [ngClass]="[ modTechnicForm.get('name').touched && modTechnicForm.get('name').invalid ? 'is-invalid' : '',
-            modTechnicForm.get('name').dirty && modTechnicForm.get('name').valid ? 'is-valid' : ''
-            ]">
+            <select id="name" class="form-control" formControlName="name" (change)="selectOption($event.target.value)">
               <option selected disabled>Seleccionar un nombre</option>
               <option *ngFor="let tecnica of tecnicas" [value]="tecnica['Id']">{{ tecnica['Nombre'] }}</option>
             </select>
-            <div class="invalid-feedback">Este campo es obligatorio</div>
           </td>
           <td *ngIf="edit" class="td-profile">
             <input type="text" id="name" class="form-control" formControlName="name" [ngClass]="[ !edit ? 'cleaned' : '',

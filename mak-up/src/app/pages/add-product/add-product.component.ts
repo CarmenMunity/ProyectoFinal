@@ -34,28 +34,37 @@ export class AddProductComponent implements OnInit {
       marca: new FormControl(null, [Validators.required]),
       categoria: new FormControl(null, [Validators.required])
     });
+    setTimeout(() => {
+      /*this.tecnicas.forEach((tecnica)=>{
+       console.log(tecnica);
+        
+      });*/
+      //console.log(this.tecnicas);
+      //console.log(this.categorias);
+      this.newProductForm.get('categoria').setValue(this.categorias[0]["Id"]);
+    }, 600);
   }
   leer() {
-    /*this.apiService.readProducto().subscribe((productos: Producto[]) => {
+    this.apiService.readProducto().subscribe((productos: Producto[]) => {
       this.productos = productos;
-    });*/
+    });
     this.apiService.readCategoria().subscribe((categorias: Categoria[]) => {
       this.categorias = categorias;
     });
   }
   newProducto() {
-    //var e = this.validationName();
+    var e = this.validationName();
     //console.log(e);
-    /*if(!e){
+    if(!e){
       return Swal.fire({
         type: 'error',
         title: 'Lo sentimos, el nombre no se puede repetir.',
         text: 'Intentelo de nuevo con otro nombre para la categoria.'
       })
-    }*/
-    /*if(this.newProductForm.get('categoria').value == 0){
+    }
+    if(this.newProductForm.get('categoria').value == 0){
       this.newProductForm.get('categoria').setValue(1);;
-    }*/
+    }
     console.log(this.newProductForm.value);
     this.apiService.createProducto(this.newProductForm.value).subscribe((producto: Producto) => {
       console.log("Producto created, ", producto);
@@ -73,7 +82,7 @@ export class AddProductComponent implements OnInit {
 
     Swal.fire({
       title: 'Se ha añadido',
-      text: 'la Producto' + this.prod.nombre,
+      text: 'el producto ' + this.prod.nombre,
       type: 'success',
       confirmButtonColor: '#3085d6',
       confirmButtonText: 'Ok'
@@ -87,17 +96,19 @@ export class AddProductComponent implements OnInit {
       return null;
     }
   }
-  validationName() {
-    var e = true;
-    var nombre = this.newProductForm.get('name').value;
-    //console.log(nombre);
-    this.productos.forEach((producto) => {
-      if (producto["Nombre"].toUpperCase() == nombre.toUpperCase())  {
-       // console.log(Producto["Nombre"] + ' = ' + nombre);
-        e = false;
-      }
-    });
-    return e;
+  validationName(): ValidatorFn {
+    return (control: AbstractControl) => {
+      var nombre = control.value;
+      console.log(nombre);
+      this.productos.forEach((producto) => {
+        if (producto["Nombre"].toUpperCase() == nombre.toUpperCase())  {
+        console.log(producto["Nombre"] + ' = ' + nombre);
+        return {invalidName : true};
+        }
+      });
+      return null;
+    }
+    
   }
 
 }

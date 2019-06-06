@@ -5,13 +5,14 @@ import { Observable } from  'rxjs';
 import {Categoria} from './models/categoria.model';
 import { Tecnica } from './models/tecnica.model';
 import { Producto } from './models/producto.model';
+import { Usuario } from './models/usuario.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  PHP_API_SERVER = "http://127.0.0.1:80";
+  PHP_API_SERVER = "http://localhost";
 
   constructor(private httpClient: HttpClient) {}
   //Categorias
@@ -52,5 +53,9 @@ export class ApiService {
   }
   createProducto(producto: Producto): Observable<Producto>{
     return this.httpClient.post<Producto>(`${this.PHP_API_SERVER}/php-mysql/api/crearProducto.php`, producto);
+  }
+  //Usuarios
+  createUsuario(usuario: Usuario): Observable<Usuario>{
+    return this.httpClient.post<Usuario>(`${this.PHP_API_SERVER}/php-mysql/api/crearUsuario.php`, usuario);
   }
 }

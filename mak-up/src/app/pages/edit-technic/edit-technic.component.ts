@@ -85,15 +85,6 @@ export class EditTechnicComponent implements OnInit {
 
   }
   saveChanges() {
-    var e = this.validationName();
-    //console.log(e);
-    if(!e){
-      return Swal.fire({
-        type: 'error',
-        title: 'Lo sentimos, el nombre no se puede repetir.',
-        text: 'Intentelo de nuevo con otro nombre para la categoria.'
-      })
-    }
     var nombre;
     this.tecnicas.forEach((tecnica) => {
       if (tecnica["Id"] == this.id) {
@@ -196,16 +187,18 @@ export class EditTechnicComponent implements OnInit {
     });
     this.cancelEdit();
   }
-  validationName() {
-    var e = true;
-    var nombre = this.modTechnicForm.get('name').value;
-    //console.log(nombre);
-    this.tecnicas.forEach((tecnica) => {
-      if (tecnica["Nombre"].toUpperCase() == nombre.toUpperCase())  {
-       //console.log(tecnica["Nombre"] + ' = ' + nombre);
-        e = false;
-      }
-    });
-    return e;
+  validationName(): ValidatorFn {
+    return (control: AbstractControl) => {
+      var nombre = control.value;
+      console.log(nombre);
+      this.tecnicas.forEach((tecnica) => {
+        if (tecnica["Nombre"].toUpperCase() == nombre.toUpperCase())  {
+        console.log(tecnica["Nombre"] + ' = ' + nombre);
+        return {invalidName : true};
+        }
+      });
+      return null;
+    }
+    
   }
 }

@@ -80,7 +80,7 @@ export class AddTechnicComponent implements OnInit {
 
     Swal.fire({
       title: 'Se ha añadido',
-      text: 'la tecnica' + this.tec.nombre,
+      text: 'la tecnica ' + this.tec.nombre,
       type: 'success',
       confirmButtonColor: '#3085d6',
       confirmButtonText: 'Ok'
@@ -94,17 +94,19 @@ export class AddTechnicComponent implements OnInit {
       return null;
     }
   }
-  validationName() {
-    var e = true;
-    var nombre = this.newTechnicForm.get('name').value;
-    //console.log(nombre);
-    this.tecnicas.forEach((tecnica) => {
-      if (tecnica["Nombre"].toUpperCase() == nombre.toUpperCase())  {
-       // console.log(tecnica["Nombre"] + ' = ' + nombre);
-        e = false;
-      }
-    });
-    return e;
+  validationName(): ValidatorFn {
+    return (control: AbstractControl) => {
+      var nombre = control.value;
+      console.log(nombre);
+      this.tecnicas.forEach((tecnica) => {
+        if (tecnica["Nombre"].toUpperCase() == nombre.toUpperCase())  {
+        console.log(tecnica["Nombre"] + ' = ' + nombre);
+        return {invalidName : true};
+        }
+      });
+      return null;
+    }
+    
   }
   validateLetras(): ValidatorFn{
 

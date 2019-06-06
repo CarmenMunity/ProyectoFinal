@@ -19,13 +19,13 @@ if(isset($postdata) && !empty($postdata))
   // Sanitize.
   $nombre = mysqli_real_escape_string($con, trim($request->name));
   $descripcion = mysqli_real_escape_string($con, trim($request->description));
-  $tipo = mysqli_real_escape_string($con, trim($request->tipo));
+  $genero = mysqli_real_escape_string($con, trim($request->genero));
   $ingredientes = mysqli_real_escape_string($con, trim($request->ingredientes));
   $marca = mysqli_real_escape_string($con, trim($request->marca));
   $categoria = mysqli_real_escape_string($con, (int)($request->categoria));
 
   // Create.
-  $sql = "INSERT INTO `producto`(`Id`,`Nombre`,`Descripcion`, `Tipo`='$tipo', `Ingredientes`='$ingredientes', `Marca`='$marca', `Categoria`) VALUES (null,'{$nombre}','{$descripcion}','{$categoria}')";
+  $sql = "INSERT INTO `producto`(`Id`,`Nombre`,`Descripcion`, `Genero`, `Ingredientes`, `Marca`, `Categoria`) VALUES (null,'{$nombre}','{$descripcion}','{$genero}','{$ingredientes}','{$marca}','{$categoria}')";
 
   if(mysqli_query($con,$sql))
   {
@@ -33,7 +33,7 @@ if(isset($postdata) && !empty($postdata))
     $producto = [
       'Nombre' => $nombre,
       'Descripcion' => $descripcion,
-      'Tipo' => $tipo,
+      'genero' => $genero,
       'Ingredientes' => $ingredientes,
       'Marca' => $marca,
       'Categoria' => $categoria,
