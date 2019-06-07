@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Event, NavigationEnd, NavigationError } from '@angular/router';
+import { FormGroup, Validators, FormControl, AbstractControl, ValidatorFn, AsyncValidatorFn } from '@angular/forms';
+import { Usuario } from 'src/app/models/usuario.model';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-login',
@@ -26,16 +29,32 @@ export class LoginComponent implements OnInit {
       message: 'Sesión iniciada correctamente.'
     },
   }
+  loginForm: FormGroup;
+  usuarios: Usuario[];
+  user: Usuario;
   public alert: any = {};
   public showAlert: boolean;
 
   constructor(
-    public router: Router
+    public router: Router,
+    private apiService: ApiService
   ) {
     this.showAlert = false;
   }
 
   ngOnInit() {
+    this.loginForm = new FormGroup({
+      name: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      login: new FormControl(null, [Validators.required]),
+    });
+  }
+  leer() {
+    this.apiService.readUsuario().subscribe((usuarios: Usuario[]) => {
+      this.usuarios = usuarios;
+      console.log(this.usuarios);
+    });
+
   }
 
   logOut() {

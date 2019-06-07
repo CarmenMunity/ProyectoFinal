@@ -58,4 +58,7 @@ export class ApiService {
   createUsuario(usuario: Usuario): Observable<Usuario>{
     return this.httpClient.post<Usuario>(`${this.PHP_API_SERVER}/php-mysql/api/crearUsuario.php`, usuario);
   }
+  readUsuario(): Observable<Usuario[]>{
+    return this.httpClient.get<Usuario[]>(`${this.PHP_API_SERVER}/php-mysql/api/leerUsuario.php`);
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from "../../models/usuario.model";
 import { FormGroup, Validators, FormControl, AbstractControl, ValidatorFn, AsyncValidatorFn } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-register',
@@ -11,11 +12,15 @@ import Swal from 'sweetalert2';
 export class RegisterComponent implements OnInit {
   
   profileForm: FormGroup;
+  usuarios: Usuario[];
   user: Usuario;
   
-  constructor() { }
+  constructor(
+    private apiService: ApiService
+  ) { }
 
   ngOnInit() {
+    this.leer();
     this.profileForm = new FormGroup({
       name: new FormControl(null, Validators.required),
       surname: new FormControl(null, Validators.required),
@@ -27,7 +32,51 @@ export class RegisterComponent implements OnInit {
         validators: [
           this.validatePassword('password1', 'password2')
         ]
-      });
+    });
+  }
+  leer() {
+    this.apiService.readUsuario().subscribe((usuarios: Usuario[]) => {
+      this.usuarios = usuarios;
+      console.log(this.usuarios);
+    });
+
+  }
+  newUsuario() {
+    /*var e = this.validationName();
+    //console.log(e);
+    if(!e){
+      return Swal.fire({
+        type: 'error',
+        title: 'Lo sentimos, el nombre no se puede repetir.',
+        text: 'Intentelo de nuevo con otro nombre para la categoria.'
+      })
+    }*/
+    console.log(this.profileForm.value);
+    this.apiService.createUsuario(this.profileForm.value).subscribe((usuario: Usuario) => {
+      console.log("usuario created, ", usuario);
+      this.msnVerify(usuario);
+    });
+
+    this.ngOnInit();
+  }
+  msnVerify(user1) {
+    this.user.id = user1["Id"]
+    this.user.nombre = user1["Nombre"];
+    this.user.apellidos = user1["Descripcion"];
+    this.user.email = user1["Categoria"];
+    this.user.perfil = user1["Perfil"];
+    this.user.login = user1["Categoria"];
+    this.user.pass = user1["Perfil"];
+    this.user.imagen = user1["Imagen"]
+    console.log(this.user);
+
+    Swal.fire({
+      title: 'Se ha añadido',
+      text: 'el usuario ' + this.user.nombre,
+      type: 'success',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Ok'
+    });
   }
   validatePassword(data1, data2) {
     return (group: FormGroup) => {
@@ -98,5 +147,19 @@ export class RegisterComponent implements OnInit {
       type: "success"
     });
   }
+  /*validationName(): ValidatorFn {
+    return (control: AbstractControl) => {
+      var nombre = control.value;
+      console.log(nombre);
+      this.usuarios.forEach((usuario) => {
+        if (usuario["Nombre"].toUpperCase() == nombre.toUpperCase())  {
+        console.log(usuario["Nombre"] + ' = ' + nombre);
+        return {invalidName : true};
+        }
+      });
+      return null;
+    }
+    
+  }*/
 }
   
