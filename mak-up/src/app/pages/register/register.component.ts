@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
     }*/
     console.log(this.profileForm.value);
     this.apiService.createUsuario(this.profileForm.value).subscribe((usuario: Usuario) => {
-      console.log("usuario created, ", usuario);
+      //console.log("usuario created, ", usuario);
       this.msnVerify(usuario);
     });
 
