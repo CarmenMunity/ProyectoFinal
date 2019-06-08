@@ -82,7 +82,6 @@ export class EditTechnicComponent implements OnInit {
     });
     this.modTechnicForm.get('description').enable();
     this.modTechnicForm.get('categoria').enable();
-
   }
   saveChanges() {
     var nombre;

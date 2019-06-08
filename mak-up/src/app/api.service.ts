@@ -61,4 +61,8 @@ export class ApiService {
   readUsuario(): Observable<Usuario[]>{
     return this.httpClient.get<Usuario[]>(`${this.PHP_API_SERVER}/php-mysql/api/leerUsuario.php`);
   }
+  updateUsuario(usuario: Usuario){
+    return this.httpClient.put<Usuario>(`${this.PHP_API_SERVER}/php-mysql/api/editarUsuario.php`, usuario);   
+  }
+  
 }

@@ -62,13 +62,17 @@ export class LoginComponent implements OnInit {
     var i = 0;
     this.usuarios.forEach((usuario) =>{
       if(this.user.email == usuario["Email"]){
-        console.log(usuario);
-        console.log(this.log);
+        // console.log(usuario);
+        //console.log(this.log);
         if(this.user.pass == usuario["Pass"]){
-          console.log(usuario);
-          this.user.id=usuario["Id"];
+         // console.log(usuario);
+          //this.user.id=usuario["Id"];
+          localStorage.setItem('id', usuario["Id"]);
+          console.log(localStorage.getItem('id'));
           this.log = true;
-          console.log(this.log);
+          //console.log(this.log);
+          localStorage.setItem('log',"true");
+          console.log(localStorage.getItem("log"));
         }
       }
     })
@@ -77,18 +81,6 @@ export class LoginComponent implements OnInit {
     this.log = false;
     console.log(this.log);
     localStorage.clear();
-  }
-
-  isLogeed() {
-    
-    if (typeof (Storage) !== "undefined") {
-      this.log = true;
-      console.log(this.isLogeed);
-      
-    } else {
-      console.log("LocalStorage no soportado en este navegador");
-    }
-
   }
 
 
