@@ -13,7 +13,7 @@ import { ApiService } from 'src/app/api.service';
 })
 export class AddEntradaComponent implements OnInit {
 
-  profileForm: FormGroup;
+  newEntradaForm: FormGroup;
 
   tipos= ["Producto", "Técnica"];
 
@@ -25,7 +25,8 @@ export class AddEntradaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.profileForm = new FormGroup({
+    this.leer();
+    this.newEntradaForm = new FormGroup({
       title: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
       tipo: new FormControl(null, [Validators.required]),
@@ -33,10 +34,10 @@ export class AddEntradaComponent implements OnInit {
       producto:  new FormControl(null, [Validators.required]),
       tecnica:  new FormControl(null, [Validators.required])
     });
-
-    this.profileForm.get('tipo').setValue(this.tipos[0]);
-    this.profileForm.get('producto').setValue(this.productos[0]);
-    this.profileForm.get('tecnica').setValue(this.tecnicas[0]);
+    setTimeout(() => {
+      this.newEntradaForm.get('producto').setValue(this.productos[0]["Id"]);
+      this.newEntradaForm.get('tecnica').setValue(this.tecnicas[0]["Id"]);
+    }, 600);
   }
   leer() {
     this.apiService.readProducto().subscribe((productos: Producto[]) => {
@@ -46,5 +47,20 @@ export class AddEntradaComponent implements OnInit {
       this.tecnicas = tecnicas;
     });
   }
+  newEntrada() {
+    var idUser = parseInt(localStorage.getItem("id"));
+    this.apiService.createEntrada(this.newEntradaForm.value, idUser).subscribe((entrada: Entrada) => {
+      console.log("Entrada created, ", entrada);
+      this.msnVerify();
+    });
+  }
+  msnVerify() {
 
+    Swal.fire({
+      title: 'Se ha añadido la entrada',
+      type: 'success',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Ok'
+    });
+  }
 }

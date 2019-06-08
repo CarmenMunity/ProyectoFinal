@@ -6,6 +6,7 @@ import { Categoria } from './models/categoria.model';
 import { Tecnica } from './models/tecnica.model';
 import { Producto } from './models/producto.model';
 import { Usuario } from './models/usuario.model';
+import { Entrada } from './models/entrada.model';
 
 @Injectable({
   providedIn: 'root'
@@ -67,5 +68,8 @@ export class ApiService {
   deleteUsuario(email: string){
     return this.httpClient.delete<Usuario>(`${this.PHP_API_SERVER}/php-mysql/api/borrarUsuario.php/?email=${email}`);
   }
-
+  //Entrada
+  createEntrada(entrada: Entrada, usuario: number): Observable<Entrada>{
+    return this.httpClient.post<Entrada>(`${this.PHP_API_SERVER}/php-mysql/api/crearEntrada.php/?usuario=${usuario}`, entrada);
+  }
 }
