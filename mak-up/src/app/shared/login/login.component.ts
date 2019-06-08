@@ -3,6 +3,7 @@ import { Router, Event, NavigationEnd, NavigationError } from '@angular/router';
 import { FormGroup, Validators, FormControl, AbstractControl, ValidatorFn, AsyncValidatorFn } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario.model';
 import { ApiService } from 'src/app/api.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { ApiService } from 'src/app/api.service';
 })
 export class LoginComponent implements OnInit {
 
-  log: boolean = false;
+  isLogged: HeaderComponent;
   public closeResult: string;
   public alerts: any = {
     warning: {
@@ -69,7 +70,6 @@ export class LoginComponent implements OnInit {
           //this.user.id=usuario["Id"];
           localStorage.setItem('id', usuario["Id"]);
           console.log(localStorage.getItem('id'));
-          this.log = true;
           //console.log(this.log);
           localStorage.setItem('log',"true");
           console.log(localStorage.getItem("log"));
@@ -78,9 +78,9 @@ export class LoginComponent implements OnInit {
     })
   }
   logOut() {
-    this.log = false;
+    /*this.log = false;
     console.log(this.log);
-    localStorage.clear();
+    localStorage.clear();*/
   }
 
 

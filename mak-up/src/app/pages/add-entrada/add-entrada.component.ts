@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Entrada } from "../../models/entrada.model";
 import { FormGroup, Validators, FormControl, AbstractControl, ValidatorFn, AsyncValidatorFn } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Producto } from 'src/app/models/producto.model';
+import { Tecnica } from 'src/app/models/tecnica.model';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-add-entrada',
@@ -14,10 +17,12 @@ export class AddEntradaComponent implements OnInit {
 
   tipos= ["Producto", "Técnica"];
 
-  productos= ["Base", "p1", "p2"];
-  tecnicas= ["t3", "t1", "t2"];
+  productos: Producto [];
+  tecnicas: Tecnica [];
 
-  constructor() { }
+  constructor(
+    private apiService: ApiService
+  ) { }
 
   ngOnInit() {
     this.profileForm = new FormGroup({
@@ -27,14 +32,19 @@ export class AddEntradaComponent implements OnInit {
       img: new FormControl(null, [Validators.required]),
       producto:  new FormControl(null, [Validators.required]),
       tecnica:  new FormControl(null, [Validators.required])
-    }, {
-        validators: [
-         // this.validatePassword('password1', 'password2')
-        ]
-      });
-      this.profileForm.get('tipo').setValue(this.tipos[0]);
-      this.profileForm.get('producto').setValue(this.productos[0]);
-      this.profileForm.get('tecnica').setValue(this.tecnicas[0]);
+    });
+
+    this.profileForm.get('tipo').setValue(this.tipos[0]);
+    this.profileForm.get('producto').setValue(this.productos[0]);
+    this.profileForm.get('tecnica').setValue(this.tecnicas[0]);
+  }
+  leer() {
+    this.apiService.readProducto().subscribe((productos: Producto[]) => {
+      this.productos = productos;
+    });
+    this.apiService.readTecnicas().subscribe((tecnicas: Tecnica[]) => {
+      this.tecnicas = tecnicas;
+    });
   }
 
 }

@@ -8,19 +8,19 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" *ngIf="!isLogged">
+      <li class="nav-item" *ngIf="!login">
         <a class="nav-link btn-link mr-2" [routerLink]="['/iniciar-sesion']" routerLinkActive="router-link-active"><i
             class="fas fa-sign-in-alt"></i> Iniciar sesión</a>
       </li>
-      <li class="nav-item" *ngIf="!isLogged">
+      <li class="nav-item" *ngIf="!login">
         <a class="nav-link btn-link mr-2" [routerLink]="['/crear-cuenta']" routerLinkActive="router-link-active"><i
             class="fas fa-user-plus"></i> Crear cuenta</a>
       </li>
-      <li class="nav-item" *ngIf="isLogged">
+      <li class="nav-item" *ngIf="login">
         <a class="nav-link btn-link mr-2" [routerLink]="['/mi-perfil']" routerLinkActive="router-link-active"><i
             class="fas fa-user"></i> Mi cuenta</a>
       </li>
-      <li class="nav-item" *ngIf="isLogged">
+      <li class="nav-item" *ngIf="login">
         <a class="nav-link btn btn-outline-secondary pointer" (click)="logOut()"><i class="fas fa-sign-out-alt"></i></a>
       </li>
       <li ngbDropdown class="nav-item ">
@@ -53,9 +53,20 @@
           Categorias
         </a>
         <div ngbDropdownMenu class="dropdownItems" aria-labelledby="navbarDropdown">
-          <a ngbDropdownItem [routerLink]="['/categoria']" routerLinkActive="router-link-active">Ver categorias</a>
+          <a ngbDropdownItem [routerLink]="['/categoria']" routerLinkActive="router-link-active">Ver Categorias</a>
           <a ngbDropdownItem [routerLink]="['/annadir-categoria']" routerLinkActive="router-link-active">Añadir
-            categorias</a>
+            Categorias</a>
+        </div>
+      </li>
+      <li ngbDropdown class="nav-item ">
+        <a ngbDropdownToggle class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Entradas
+        </a>
+        <div ngbDropdownMenu class="dropdownItems" aria-labelledby="navbarDropdown">
+          <a ngbDropdownItem [routerLink]="['/categoria']" routerLinkActive="router-link-active">Ver Entradas</a>
+          <a ngbDropdownItem [routerLink]="['/annadir-entrada']" routerLinkActive="router-link-active">Nueva
+          Entrada</a>
         </div>
       </li>
 

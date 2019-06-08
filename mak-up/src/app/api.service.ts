@@ -64,5 +64,8 @@ export class ApiService {
   updateUsuario(usuario: Usuario){
     return this.httpClient.put<Usuario>(`${this.PHP_API_SERVER}/php-mysql/api/editarUsuario.php`, usuario);   
   }
-  
+  deleteUsuario(email: string){
+    return this.httpClient.delete<Usuario>(`${this.PHP_API_SERVER}/php-mysql/api/borrarUsuario.php/?email=${email}`);
+  }
+
 }

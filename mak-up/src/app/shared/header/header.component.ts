@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { LoginComponent } from '../login/login.component'
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -8,14 +8,18 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnChanges {
   
-  login: LoginComponent;
+  login: boolean;
   isCollapsed: boolean = true;
-
-  constructor() { }
+  constructor() { 
+    this.login = false;
+  }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
   }
 
 }
