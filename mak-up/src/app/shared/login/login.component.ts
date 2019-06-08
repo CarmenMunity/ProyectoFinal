@@ -11,9 +11,6 @@ import { ApiService } from 'src/app/api.service';
 })
 export class LoginComponent implements OnInit {
 
-  public email: string;
-  public password: string;
-  isLogged: boolean = false;
   log: boolean = false;
   public closeResult: string;
   public alerts: any = {
@@ -69,6 +66,7 @@ export class LoginComponent implements OnInit {
         console.log(this.log);
         if(this.user.pass == usuario["Pass"]){
           console.log(usuario);
+          this.user.id=usuario["Id"];
           this.log = true;
           console.log(this.log);
         }
@@ -76,15 +74,15 @@ export class LoginComponent implements OnInit {
     })
   }
   logOut() {
-    this.isLogged = false;
-    console.log(this.isLogged);
+    this.log = false;
+    console.log(this.log);
     localStorage.clear();
   }
 
   isLogeed() {
     
     if (typeof (Storage) !== "undefined") {
-      this.isLogged = true;
+      this.log = true;
       console.log(this.isLogeed);
       
     } else {

@@ -54,22 +54,13 @@ export class RegisterComponent implements OnInit {
     console.log(this.profileForm.value);
     this.apiService.createUsuario(this.profileForm.value).subscribe((usuario: Usuario) => {
       //console.log("usuario created, ", usuario);
-      this.msnVerify(usuario);
+      this.user = usuario;
+      this.msnVerify();
     });
 
     this.ngOnInit();
   }
-  msnVerify(user1) {
-    this.user.id = user1["Id"]
-    this.user.nombre = user1["Nombre"];
-    this.user.apellidos = user1["Descripcion"];
-    this.user.email = user1["Categoria"];
-    this.user.perfil = user1["Perfil"];
-    this.user.login = user1["Categoria"];
-    this.user.pass = user1["Perfil"];
-    this.user.imagen = user1["Imagen"]
-    console.log(this.user);
-
+  msnVerify() {
     Swal.fire({
       title: 'Se ha añadido',
       text: 'el usuario ' + this.user.nombre,
@@ -91,14 +82,9 @@ export class RegisterComponent implements OnInit {
           passwordDifferent: true
         }
       }
-
-
     }
   }
-
-
   validatePasswordPattern(): ValidatorFn {
-
     return (control: AbstractControl) => {
       var patternRexpNumber: RegExp = /\d+/;
       var patternRexpMayus: RegExp = /[A-Z]+/;
@@ -135,17 +121,6 @@ export class RegisterComponent implements OnInit {
       }
       return (errors)
     }
-  }
-  register() {
-    this.user = new Usuario(this.profileForm.value.name, this.profileForm.value.surname, this.profileForm.value.email, "", "usuario", this.profileForm.value.login, this.profileForm.value.password1);
-    this.msgVerify();
-  }
-  msgVerify() {
-    return Swal.fire({
-      title: "Tu cuenta ha sido creada",
-      html:`<p>Enhorabuena!</p>`,
-      type: "success"
-    });
   }
   /*validationName(): ValidatorFn {
     return (control: AbstractControl) => {

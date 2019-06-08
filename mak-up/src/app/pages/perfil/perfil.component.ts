@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormControl, AbstractControl, ValidatorFn, Async
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Usuario } from 'src/app/models/usuario.model';
+import { LoginComponent } from 'src/app/shared/login/login.component';
 
 @Component({
   selector: 'app-perfil',
@@ -10,7 +11,9 @@ import { Usuario } from 'src/app/models/usuario.model';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-  user: any;
+
+  login: LoginComponent;
+  user: Usuario;
   date: any;
   edit: boolean = false;
   profileForm: FormGroup;
@@ -18,13 +21,13 @@ export class PerfilComponent implements OnInit {
   constructor(
     public router: Router,
   ) { 
-    this.user = new Usuario("Carmen", "Diaz", "carmen.diaz.lira@gmail.com","default", "system", "CDC","system"); //Quiero cogerlo de la caché
   }
 
   ngOnInit() {
-   
+    this.login.user = this.user;
     console.log(this.user);
-    console.log("Le he dado al botón: " + this.edit);
+
+    //console.log("Le he dado al botón: " + this.edit);
     this.profileForm = new FormGroup({
       name: new FormControl({ value: this.user.nombre, disabled: true }, Validators.required),
       surname: new FormControl({ value: this.user.apellidos, disabled: true }, Validators.required),

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from  'rxjs';
 //modules
-import {Categoria} from './models/categoria.model';
+import { Categoria } from './models/categoria.model';
 import { Tecnica } from './models/tecnica.model';
 import { Producto } from './models/producto.model';
 import { Usuario } from './models/usuario.model';
