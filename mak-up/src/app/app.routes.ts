@@ -10,7 +10,7 @@ import { ShowCategoryComponent} from './pages/show-category/show-category.compon
 import { EditProductComponent } from './pages/edit-product/edit-product.component';
 import { EditTechnicComponent } from './pages/edit-technic/edit-technic.component';
 import { HomeComponent } from './pages/home/home.component';
-
+import { ShowEntradaComponent } from './pages/show-entrada/show-entrada.component'
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, data: {title: 'Pagina Principal'}},
   {path: '',   redirectTo: '/home', pathMatch: 'full'},
@@ -22,6 +22,7 @@ const appRoutes: Routes = [
   {path: 'mi-perfil',  component: PerfilComponent},
   {path: 'annadir-categoria', component: AddCategoryComponent},
   {path: 'categoria', component: ShowCategoryComponent},
+  {path: 'entrada', component: ShowEntradaComponent},
   {path: 'editar-producto', component: EditProductComponent},
   {path: 'editar-tecnica', component: EditTechnicComponent},
   //{path: '**', component: PagenotfountComponent}

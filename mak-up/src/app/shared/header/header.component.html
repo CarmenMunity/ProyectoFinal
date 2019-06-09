@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <img src="../../../assets/img/perfil.png" id="logo">
-  <a class="navbar-brand" href="#">Mak-Up!</a>
+  <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active">Mak-Up!</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"
     (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>

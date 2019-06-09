@@ -4,6 +4,8 @@ import { FormGroup, Validators, FormControl, AbstractControl, ValidatorFn, Async
 import { Usuario } from 'src/app/models/usuario.model';
 import { ApiService } from 'src/app/api.service';
 import { HeaderComponent } from '../header/header.component';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,7 @@ import { HeaderComponent } from '../header/header.component';
 })
 export class LoginComponent implements OnInit {
 
-  isLogged: HeaderComponent;
+  isLogged: HeaderComponent = {login:null, isCollapsed:null, ngOnInit:null, ngOnChanges:null, logOut:null, router:null, pageRefresh:null};
   public closeResult: string;
   public alerts: any = {
     warning: {
@@ -73,6 +75,9 @@ export class LoginComponent implements OnInit {
           //console.log(this.log);
           localStorage.setItem('log',"true");
           console.log(localStorage.getItem("log"));
+          //this.router.navigate(['/']);
+          this.pageRefresh();
+          this.isLogged.ngOnInit();
         }
       }
     })
@@ -81,6 +86,10 @@ export class LoginComponent implements OnInit {
     /*this.log = false;
     console.log(this.log);
     localStorage.clear();*/
+  }
+  pageRefresh() {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate([""])); 
   }
 
 

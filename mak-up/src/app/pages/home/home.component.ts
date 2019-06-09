@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Entrada } from 'src/app/models/entrada.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ export class HomeComponent implements OnInit {
   entradas: Entrada[];
 
   constructor(
+    public router: Router,
     private apiService: ApiService
     ) { }
 
@@ -33,6 +35,9 @@ export class HomeComponent implements OnInit {
       this.entradas = entradas;
       console.log(entradas);
     });
+  }
+  irEntrada(id){
+    this.router.navigate(['/entrada'],{queryParams:{id}})
   }
 
 }

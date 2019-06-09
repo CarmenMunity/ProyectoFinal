@@ -6,7 +6,7 @@
             <h1 class="h2 mb-3 font-weight-normal">Entradas recientes</h1>
             <div *ngFor="let entrada of entradas" class="">
               <!--<img src="{{entrada['Imagen']}}"/>-->
-              <h3>{{entrada["Titulo"]}}</h3>
+              <button class="btn btn-link btn-entrada" (click)="irEntrada(entrada['Id'])"><h3>{{entrada["Titulo"]}}</h3></button>
               <p>{{entrada["Descripcion"]}}</p>
             </div>
           </div>

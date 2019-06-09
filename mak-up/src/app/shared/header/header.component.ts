@@ -1,4 +1,5 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Router, Event, NavigationEnd, NavigationError } from '@angular/router';
 import { LoginComponent } from '../login/login.component'
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -10,19 +11,31 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 })
 export class HeaderComponent implements OnInit, OnChanges {
   
-  login: boolean;
+  login: boolean = false;
   isCollapsed: boolean = true;
-  constructor() { 
-    this.login = false;
+  constructor(
+    public router: Router
+  ) { 
   }
 
   ngOnInit() {
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if(changes.login){
-      this.ngOnInit();
+    console.log(localStorage.getItem("log"));
+    if(localStorage.getItem("log") == "true"){
+      this.login=true;
     }
+  }
+  ngOnChanges(changes: SimpleChanges) {
+  }
+  logOut() {
+    this.login = false;
+    console.log(this.login);
+    localStorage.clear();
+    //this.router.navigate(['/']);
+    this.pageRefresh();
+  }
+  pageRefresh() {
+    this.router.navigateByUrl('/iniciar-sesion', {skipLocationChange: true}).then(()=>
+    this.router.navigate([""])); 
   }
 
 }
