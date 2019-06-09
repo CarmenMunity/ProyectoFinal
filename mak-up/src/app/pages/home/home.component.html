@@ -1,0 +1,18 @@
+<div class="d-flex flex-row">
+  <app-sidebar></app-sidebar>
+  <div class="pages container-fluid pt-4 pb-4 pl-4 mt-3">
+    <div class="row">
+        <div id="entradas" class="continer-fluid mr-3 col-sm-8" id="div-entradas-recientes">
+            <h1 class="h2 mb-3 font-weight-normal">Entradas recientes</h1>
+            <div *ngFor="let entrada of entradas" class="">
+              <!--<img src="{{entrada['Imagen']}}"/>-->
+              <h3>{{entrada["Titulo"]}}</h3>
+              <p>{{entrada["Descripcion"]}}</p>
+            </div>
+          </div>
+          <div id="div-top-ten" class="continer-fluid text-center p-1 col-sm-3">
+            <h2 class="h3 mb-3 font-weight-normal">Top 10 de Entradas</h2>
+          </div>
+    </div>    
+  </div>
+</div>

@@ -18,7 +18,12 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { ShowCategoryComponent } from './show-category/show-category.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
-import { EditTechnicComponent } from './edit-technic/edit-technic.component'
+import { EditTechnicComponent } from './edit-technic/edit-technic.component';
+import { HomeComponent } from './home/home.component';
+import { ShowEntradaComponent } from './show-entrada/show-entrada.component';
+import { ShowForCatComponent } from './show-for-cat/show-for-cat.component';
+import { ShowForTecComponent } from './show-for-tec/show-for-tec.component';
+import { ShowForProComponent } from './show-for-pro/show-for-pro.component'
 
 @NgModule({
   declarations: [
@@ -31,7 +36,12 @@ import { EditTechnicComponent } from './edit-technic/edit-technic.component'
     PerfilComponent,
     ShowCategoryComponent,
     EditProductComponent,
-    EditTechnicComponent
+    EditTechnicComponent,
+    HomeComponent,
+    ShowEntradaComponent,
+    ShowForCatComponent,
+    ShowForTecComponent,
+    ShowForProComponent
   ],
   exports: [
     PagesComponent,

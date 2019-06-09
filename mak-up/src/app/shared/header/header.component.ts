@@ -20,6 +20,9 @@ export class HeaderComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if(changes.login){
+      this.ngOnInit();
+    }
   }
 
 }

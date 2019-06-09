@@ -9,9 +9,11 @@ import { AddCategoryComponent} from './pages/add-category/add-category.component
 import { ShowCategoryComponent} from './pages/show-category/show-category.component';
 import { EditProductComponent } from './pages/edit-product/edit-product.component';
 import { EditTechnicComponent } from './pages/edit-technic/edit-technic.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const appRoutes: Routes = [
-  //{path: '', component: DashboardComponent, data: {title: 'Gestiones municipales'}},
+  {path: '', component: HomeComponent, data: {title: 'Pagina Principal'}},
+  {path: '',   redirectTo: '/home', pathMatch: 'full'},
   {path: 'iniciar-sesion', component: LoginComponent},
   {path: 'annadir-producto', component: AddProductComponent},
   {path: 'annadir-tecnica', component: AddTechnicComponent},

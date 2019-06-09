@@ -72,4 +72,8 @@ export class ApiService {
   createEntrada(entrada: Entrada, usuario: number): Observable<Entrada>{
     return this.httpClient.post<Entrada>(`${this.PHP_API_SERVER}/php-mysql/api/crearEntrada.php/?usuario=${usuario}`, entrada);
   }
+  readEntrada(): Observable<Entrada[]>{
+    return this.httpClient.get<Entrada[]>(`${this.PHP_API_SERVER}/php-mysql/api/leerEntrada.php`);
+  }
+  //Sesion
 }

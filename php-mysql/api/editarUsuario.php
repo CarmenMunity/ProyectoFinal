@@ -14,7 +14,7 @@ if(isset($postdata) && !empty($postdata))
     return http_response_code(400);
   }*/
   // Sanitize.
-  $id    = mysqli_real_escape_string($con, (int)$request->id);
+  //$id    = mysqli_real_escape_string($con, (int)$request->id);
   $nombre = mysqli_real_escape_string($con, trim($request->name));
   $apellidos = mysqli_real_escape_string($con, trim($request->surname));
   $email = mysqli_real_escape_string($con, trim($request->email));
@@ -22,7 +22,7 @@ if(isset($postdata) && !empty($postdata))
   $userName = mysqli_real_escape_string($con, trim($request->login));
 
   // Update.
-  $sql = "UPDATE `usuario` SET `Nombre`='$nombre',`Apellidos`='$apellidos',`Email`='$email',`Imagen`='$imagen',`UserName`='$userName',  WHERE `id` = '{$id}' LIMIT 1";
+  $sql = "UPDATE `usuario` SET `Nombre`='$nombre',`Apellidos`='$apellidos',`Imagen`='$imagen',`UserName`='$userName' WHERE `Email` = '{$email}' LIMIT 1";
 
   if(mysqli_query($con, $sql))
   {

@@ -18,14 +18,14 @@ if(isset($postdata) && !empty($postdata))
 
   // Sanitize.
   $nombre = mysqli_real_escape_string($con, trim($request->name));
-  $apellidos = mysqli_real_escape_string($con, trim($request->apellidos));
+  $apellidos = mysqli_real_escape_string($con, trim($request->surname));
   $email = mysqli_real_escape_string($con, trim($request->email));
-  $imagen = mysqli_real_escape_string($con, trim($request->imagen));
-  $perfil = mysqli_real_escape_string($con, trim($request->perfil));
-  $password = mysqli_real_escape_string($con, (int)($request->password));
-  $login = mysqli_real_escape_string($con, (int)($request->login));
+  //$imagen = mysqli_real_escape_string($con, trim($request->imagen));
+  //$perfil = mysqli_real_escape_string($con, trim($request->perfil));
+  $password = mysqli_real_escape_string($con, trim($request->password1));
+  $login = mysqli_real_escape_string($con, trim($request->login));
   // Create.
-  $sql = "INSERT INTO `usuario`(`Id`,`Nombre`,`Apellidos`, `Email`,`Imagen`, `Perfil`,`Password`, `Login`) VALUES (null,'{$nombre}','{$apellidos}','{$email},'{$imagen}','{$perfil},'{$password}','{$login}')";
+  $sql = "INSERT INTO `usuario`(`Id`,`Nombre`,`Apellidos`, `Email`,`Imagen`, `Perfil`,`Pass`, `UserName`) VALUES (null,'{$nombre}','{$apellidos}','{$email}', null,'usuario','{$password}','{$login}')";
 
   if(mysqli_query($con,$sql))
   {
@@ -34,8 +34,8 @@ if(isset($postdata) && !empty($postdata))
       'Nombre' => $nombre,
       'Apellidos' => $apellidos,
       'Email' => $email,
-      'Imagen' => $imagen,
-      'Perfil' => $perfil,
+      'Imagen' => null,
+      'Perfil' => "usuario",
       'Password' => $password,
       'Login' => $login,
       'Id'    => mysqli_insert_id($con)
@@ -44,7 +44,8 @@ if(isset($postdata) && !empty($postdata))
   }
   else
   {
-    http_response_code(422);
+    //http_response_code(422);
+    echo "miau";
   }
 }
 ?>
