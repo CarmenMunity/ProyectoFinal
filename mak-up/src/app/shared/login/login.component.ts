@@ -5,7 +5,7 @@ import { Usuario } from 'src/app/models/usuario.model';
 import { ApiService } from 'src/app/api.service';
 import { HeaderComponent } from '../header/header.component';
 import { Location } from '@angular/common';
-
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -14,22 +14,8 @@ import { Location } from '@angular/common';
 })
 export class LoginComponent implements OnInit {
 
-  isLogged: HeaderComponent = {login:null, isCollapsed:null, ngOnInit:null, ngOnChanges:null, logOut:null, router:null, pageRefresh:null};
+  log:boolean = false;
   public closeResult: string;
-  public alerts: any = {
-    warning: {
-      type: 'warning',
-      message: 'Ha ocurrido un error al recuperar su usuario!'
-    },
-    errorPassword: {
-      type: 'danger',
-      message: 'Contraseña incorrecta!!'
-    },
-    success: {
-      type: 'success',
-      message: 'Sesión iniciada correctamente.'
-    },
-  }
   loginForm: FormGroup;
   usuarios: Usuario[];
   user: Usuario  = { id: null, nombre: null, apellidos: null, email: null, imagen: null, perfil: null, login: null, pass: null };;
@@ -46,7 +32,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.leer();
     this.loginForm = new FormGroup({
-      //name: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
       pass: new FormControl(null, [Validators.required]),
     });
@@ -62,7 +47,6 @@ export class LoginComponent implements OnInit {
   logIn(){
     this.user.email= this.loginForm.get("email").value;
     this.user.pass= this.loginForm.get("pass").value;
-    var i = 0;
     this.usuarios.forEach((usuario) =>{
       if(this.user.email == usuario["Email"]){
         // console.log(usuario);
@@ -71,16 +55,25 @@ export class LoginComponent implements OnInit {
          // console.log(usuario);
           //this.user.id=usuario["Id"];
           localStorage.setItem('id', usuario["Id"]);
-          console.log(localStorage.getItem('id'));
-          //console.log(this.log);
+          localStorage.setItem('nombre', usuario["Nombre"]);
+          localStorage.setItem('perfil', usuario["Perfil"]);
+          localStorage.setItem('userName', usuario["UserName"]);
+          //console.log(localStorage.getItem('id'));
+          this.log=true;
           localStorage.setItem('log',"true");
-          console.log(localStorage.getItem("log"));
-          //this.router.navigate(['/']);
-          this.pageRefresh();
-          this.isLogged.ngOnInit();
+          //console.log(localStorage.getItem("log"));
+          this.router.navigate(['/']);
+          //this.pageRefresh();
         }
       }
-    })
+    });//fin foreach
+    if(!this.log){
+      Swal.fire({
+        type: 'error',
+        title: 'Error',
+        text: 'El email o la contraseña no son correctos'
+      });
+    }
   }
   logOut() {
     /*this.log = false;

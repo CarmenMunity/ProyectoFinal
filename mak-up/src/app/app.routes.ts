@@ -9,8 +9,11 @@ import { AddCategoryComponent} from './pages/add-category/add-category.component
 import { ShowCategoryComponent} from './pages/show-category/show-category.component';
 import { EditProductComponent } from './pages/edit-product/edit-product.component';
 import { EditTechnicComponent } from './pages/edit-technic/edit-technic.component';
+import { EditEntradaComponent } from './pages/edit-entrada/edit-entrada.component';
 import { HomeComponent } from './pages/home/home.component';
-import { ShowEntradaComponent } from './pages/show-entrada/show-entrada.component'
+import { ShowEntradaComponent } from './pages/show-entrada/show-entrada.component';
+
+
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, data: {title: 'Pagina Principal'}},
   {path: '',   redirectTo: '/home', pathMatch: 'full'},
@@ -25,6 +28,7 @@ const appRoutes: Routes = [
   {path: 'entrada', component: ShowEntradaComponent},
   {path: 'editar-producto', component: EditProductComponent},
   {path: 'editar-tecnica', component: EditTechnicComponent},
+  {path: 'editar-entrada', component: EditEntradaComponent},
   //{path: '**', component: PagenotfountComponent}
 ];
 

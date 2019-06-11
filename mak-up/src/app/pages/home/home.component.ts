@@ -19,21 +19,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.leer();
-    setTimeout(() => {
-      /*this.tecnicas.forEach((tecnica)=>{
-       console.log(tecnica);
-        
-      });*/
-      //console.log(this.tecnicas);
-      console.log(this.entradas);
-      
-    }, 600);
   }
 
   leer(){
     this.apiService.readEntrada().subscribe((entradas: Entrada[]) => {
       this.entradas = entradas;
-      console.log(entradas);
+      //console.log(entradas);
     });
   }
   irEntrada(id){

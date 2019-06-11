@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Usuario } from 'src/app/models/usuario.model';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,25 +14,25 @@ export class SidebarComponent implements OnInit {
   usuarios: Usuario[];
   usuario: Usuario;
   id: number;
+  cargado: boolean = false;
+  nombre:string;
+  userName:string;
+
   constructor(
     private apiService: ApiService
   ) { }
 
   ngOnInit() {
-    this.leer();
     //console.log(localStorage.getItem("log"));
     if(localStorage.getItem("log") == "true"){
       this.login=true;
     }
-    setTimeout(() => {
-      this.id = parseInt(localStorage.getItem("id"));
-      console.log(this.id);
-      this.usuarios.forEach((usuario)=>{
-        if(this.id == usuario["Id"]){
-          this.usuario = usuario;
-        }       
-      });
-    }, 500);
+    //console.log(localStorage.getItem("nombre"));
+    //console.log(localStorage.getItem("userName"));
+    
+    this.nombre = localStorage.getItem("nombre");
+    this.userName = localStorage.getItem("userName");  
+    
   }
   leer() {
     this.apiService.readUsuario().subscribe((usuarios: Usuario[]) => {

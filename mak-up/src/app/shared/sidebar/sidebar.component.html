@@ -1,18 +1,18 @@
 <aside class="sidebar shadow-sm" id="div-siderbar">
 
-  <div *ngIf="login" class="sidebar-profile d-flex flex-column justify-content-center pt-5 pb-3">
+  <div *ngIf="login" class="sidebar-profile d-flex flex-column justify-content-center p-5 m-1" id="div-usuario-img">
     <div class="picture-wrapper text-center pb-4">
       <div class="user-picture mr-auto">
         <img src="../../../assets/img/usuDefault.png" class="img-fluid" id="imgUsu" alt="Imagen de perfil de usuario">
       </div>
     </div>
     <div class="profile-details text-center pb-3">
-      <p class="mb-0 name">{{usuario["Nombre"]}}</p>
-      <small class="role">{{usuario["UserName"]}}</small>
+      <p class="mb-0 name">{{nombre}}</p>
+      <small class="role">@{{userName}}</small>
     </div>
   </div>
   <nav class="sidebar-menu p-1 pb-3">
-    <div class="menu-header ml-1 mt-1 mb-2">
+    <!--<div class="menu-header ml-1 mt-1 mb-2">
       Components
     </div>
     <ul class="menu-items">
@@ -53,6 +53,6 @@
           <span>Notifications</span>
         </a>
       </li>
-    </ul>
+    </ul>-->
   </nav>
 </aside>

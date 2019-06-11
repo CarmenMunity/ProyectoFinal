@@ -21,21 +21,21 @@
             class="fas fa-user"></i> Mi cuenta</a>
       </li>
       <li class="nav-item" *ngIf="login">
-        <a class="nav-link btn btn-outline-secondary pointer" (click)="logOut()"><i class="fas fa-sign-out-alt"></i></a>
+        <a class="nav-link btn-link mr-2" (click)="logOut()"><i class="fas fa-sign-out-alt">Cerrar sesión</i></a>
       </li>
-      <li ngbDropdown class="nav-item ">
+      <li *ngIf="perfil != 'usuario' && login" ngbDropdown class="nav-item">
         <a ngbDropdownToggle class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Tecnicas
         </a>
         <div ngbDropdownMenu class="dropdownItems" aria-labelledby="navbarDropdown">
-          <a ngbDropdownItem [routerLink]="['/editar-tecnica']" routerLinkActive="router-link-active">Editar mis
+          <a ngbDropdownItem [routerLink]="['/editar-tecnica']" routerLinkActive="router-link-active">Editar
             Tecnicas</a>
           <a ngbDropdownItem [routerLink]="['/annadir-tecnica']" routerLinkActive="router-link-active">Añadir
             Tecnica</a>
         </div>
       </li>
-      <li ngbDropdown class="nav-item ">
+      <li *ngIf="perfil != 'usuario' && login " ngbDropdown class="nav-item ">
         <a ngbDropdownToggle class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Productos
@@ -47,7 +47,7 @@
             Protucto</a>
         </div>
       </li>
-      <li ngbDropdown class="nav-item ">
+      <li *ngIf="perfil != 'usuario' && login" ngbDropdown class="nav-item ">
         <a ngbDropdownToggle class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Categorias
@@ -58,13 +58,13 @@
             Categorias</a>
         </div>
       </li>
-      <li ngbDropdown class="nav-item ">
+      <li *ngIf="login" ngbDropdown class="nav-item ">
         <a ngbDropdownToggle class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Entradas
         </a>
         <div ngbDropdownMenu class="dropdownItems" aria-labelledby="navbarDropdown">
-          <a ngbDropdownItem [routerLink]="['/categoria']" routerLinkActive="router-link-active">Ver Entradas</a>
+          <a ngbDropdownItem [routerLink]="['/editar-entrada']" routerLinkActive="router-link-active">Editar mi Entradas</a>
           <a ngbDropdownItem [routerLink]="['/annadir-entrada']" routerLinkActive="router-link-active">Nueva
           Entrada</a>
         </div>
@@ -72,9 +72,9 @@
 
     </ul>
 
-    <form class="form-inline my-2 my-lg-0">
+    <!--<form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    </form>-->
   </div>
 </nav>

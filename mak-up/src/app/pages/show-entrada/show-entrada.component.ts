@@ -3,7 +3,14 @@ import { ApiService } from 'src/app/api.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Entrada } from 'src/app/models/entrada.model';
 import { ActivatedRoute } from '@angular/router';
+import { Valoracion } from 'src/app/models/valoracion.model';
 
+interface ICompany {
+  id: number;
+  rating: number;
+  entrada: string;
+  usuario: string;
+}
 @Component({
   selector: 'app-show-entrada',
   templateUrl: './show-entrada.component.html',
@@ -15,6 +22,10 @@ export class ShowEntradaComponent implements OnInit {
   entradas: Entrada[];
   entrada:Entrada;
   id:number;
+  cargado:boolean = false;
+  ratingClicked: number;
+  itemIdRatingClicked: string;
+  item: ICompany = { 'id': 0, 'rating': 3, 'entrada':null, 'usuario': null };
 
   constructor(
     public route: ActivatedRoute,
@@ -24,10 +35,6 @@ export class ShowEntradaComponent implements OnInit {
   ngOnInit() {
     this.leer();
     this.id=parseInt(this.route.snapshot.queryParamMap.get('id'));           
-    this.entradaForm = new FormGroup({
-      title: new FormControl({value:null,disabled: true}),
-      description: new FormControl({value:null,disabled: true}),
-    });
     setTimeout(() => {
       this.entradas.forEach((entrada)=>{
         if(this.id == entrada["Id"]){
@@ -35,10 +42,10 @@ export class ShowEntradaComponent implements OnInit {
           //console.log(this.entrada);
         }       
       });
-      this.entradaForm.get('title').setValue(this.entrada["Titulo"]);
-      this.entradaForm.get('description').setValue(this.entrada["Descripcion"]);
-      
+      this.cargado=true; 
     }, 600);
+    this.item.entrada= this.id.toString();
+
   }
   leer(){
     this.apiService.readEntrada().subscribe((entradas: Entrada[]) => {
@@ -48,6 +55,15 @@ export class ShowEntradaComponent implements OnInit {
   }
   imgEntrada(){
     return this.entrada["Imagen"];
+  }
+ 
+  ratingComponentClick(clickObj: any): void {
+
+    if (!!this.item) {
+      this.item.rating = clickObj.rating;
+      this.ratingClicked = clickObj.rating;
+    }
+    //localStorage.setItem('rating', usuario["Id"]);
   }
 
 }

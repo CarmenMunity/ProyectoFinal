@@ -19,8 +19,9 @@ if(isset($postdata) && !empty($postdata))
   // Sanitize.
   $titulo = mysqli_real_escape_string($con, trim($request->title));
   $descripcion = mysqli_real_escape_string($con, trim($request->description));
-  $imagen = mysqli_real_escape_string($con, trim($request->imagen));
-  $producto = mysqli_real_escape_string($con, int($request->producto));
+  //$imagen = mysqli_real_escape_string($con, trim($request->imagen));
+  $imagen= null;
+  $producto = mysqli_real_escape_string($con, (int)($request->producto));
   $tecnica = mysqli_real_escape_string($con, (int)($request->tecnica));
 
   // Create.
@@ -38,7 +39,6 @@ if(isset($postdata) && !empty($postdata))
     ];
     echo json_encode($entrada);
   }
-  //$sql = "INSERT INTO `tipo`(`Id`,`Entrada`,`Producto`, `Tecnica`) VALUES (null,'{$entrada}','{$producto}','{$tecnica}')";
   else
   {
     http_response_code(422);

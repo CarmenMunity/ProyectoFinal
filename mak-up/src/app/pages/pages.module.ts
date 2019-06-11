@@ -23,7 +23,9 @@ import { HomeComponent } from './home/home.component';
 import { ShowEntradaComponent } from './show-entrada/show-entrada.component';
 import { ShowForCatComponent } from './show-for-cat/show-for-cat.component';
 import { ShowForTecComponent } from './show-for-tec/show-for-tec.component';
-import { ShowForProComponent } from './show-for-pro/show-for-pro.component'
+import { ShowForProComponent } from './show-for-pro/show-for-pro.component';
+import { EditEntradaComponent } from './edit-entrada/edit-entrada.component';
+import { RatingComponent } from './rating/rating.component'
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { ShowForProComponent } from './show-for-pro/show-for-pro.component'
     ShowEntradaComponent,
     ShowForCatComponent,
     ShowForTecComponent,
-    ShowForProComponent
+    ShowForProComponent,
+    EditEntradaComponent,
+    RatingComponent
   ],
   exports: [
     PagesComponent,

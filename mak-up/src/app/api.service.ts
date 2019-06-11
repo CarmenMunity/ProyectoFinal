@@ -7,6 +7,7 @@ import { Tecnica } from './models/tecnica.model';
 import { Producto } from './models/producto.model';
 import { Usuario } from './models/usuario.model';
 import { Entrada } from './models/entrada.model';
+import { Tipo } from './models/tipo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ import { Entrada } from './models/entrada.model';
 export class ApiService {
 
   PHP_API_SERVER = "http://localhost";
-
   constructor(private httpClient: HttpClient) {}
+
   //Categorias
   readCategoria(): Observable<Categoria[]>{
     return this.httpClient.get<Categoria[]>(`${this.PHP_API_SERVER}/php-mysql/api/leerCategoria.php`);
@@ -65,8 +66,8 @@ export class ApiService {
   updateUsuario(usuario: Usuario){
     return this.httpClient.put<Usuario>(`${this.PHP_API_SERVER}/php-mysql/api/editarUsuario.php`, usuario);   
   }
-  deleteUsuario(email: string){
-    return this.httpClient.delete<Usuario>(`${this.PHP_API_SERVER}/php-mysql/api/borrarUsuario.php/?email=${email}`);
+  deleteUsuario(id: number){
+    return this.httpClient.delete<Usuario>(`${this.PHP_API_SERVER}/php-mysql/api/borrarUsuario.php/?id=${id}`);
   }
   //Entrada
   createEntrada(entrada: Entrada, usuario: number): Observable<Entrada>{
@@ -75,5 +76,17 @@ export class ApiService {
   readEntrada(): Observable<Entrada[]>{
     return this.httpClient.get<Entrada[]>(`${this.PHP_API_SERVER}/php-mysql/api/leerEntrada.php`);
   }
-  //Sesion
+  deleteEntrada(id: number){
+    return this.httpClient.delete<Entrada>(`${this.PHP_API_SERVER}/php-mysql/api/borrarEntrada.php/?id=${id}`);
+  }
+  //Tipo
+  createTipo(tipo: Tipo){
+    return this.httpClient.post<Tipo>(`${this.PHP_API_SERVER}/php-mysql/api/crearTipo.php`, tipo);   
+  }
+  readTipo(): Observable<Tipo[]>{
+    return this.httpClient.get<Tipo[]>(`${this.PHP_API_SERVER}/php-mysql/api/leerTipo.php`);
+  }
+  deleteTipo(id: number){
+    return this.httpClient.delete<Tipo>(`${this.PHP_API_SERVER}/php-mysql/api/borrarTipo.php/?id=${id}`);
+  }
 }

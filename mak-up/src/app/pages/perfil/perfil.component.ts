@@ -113,5 +113,55 @@ export class PerfilComponent implements OnInit {
     this.profileForm.get('surname').setValue(this.user["Apellidos"]);
     this.profileForm.get('login').setValue(this.user["UserName"]);
   }
+  msnBorrar() {
+    var nombre;
+    this.usuarios.forEach((usuario) => {
+      if (usuario["Id"] == this.id) {
+        nombre = usuario['Nombre'];
+      }
+    });
+    Swal.fire({
+      title: '¿Está seguro que quieres borrar ' + nombre + ' ?',
+      text: "No puede revertir después de aceptar este mensaje.",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, borralo.'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Borrado!',
+          nombre + ' se ha borrado.',
+          'success'
+        )
+        this.borrar();
+      }
+    })
+  }
+  borrar() {
+    //console.log(this.id);
+    this.apiService.deleteUsuario(this.id).subscribe((usuario: Usuario) => {
+      console.log("usuario deleted, ", usuario);
+    });
+    var i = 0
+    this.usuarios.forEach((usuario) => {
+      if (usuario["Id"] == this.id) {
+        this.usuarios.splice(i, 1);
+      }
+      i++;
+    });
+    this.profileForm.get('name').setValue(this.usuarios[0]["Id"]);
+    this.logOut();
+  }
+  logOut() {
+    localStorage.clear();
+    //this.router.navigate(['/']);
+    this.pageRefresh();
+  }
+  pageRefresh() {
+    this.router.navigateByUrl('/iniciar-sesion', {skipLocationChange: true}).then(()=>
+    this.router.navigate([""])); 
+  }
 }
 
