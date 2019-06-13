@@ -183,7 +183,7 @@ export class ShowCategoryComponent implements OnInit {
       var nombre = control.value;
       console.log(nombre);
       this.categorias.forEach((categoria) => {
-        if (categoria["Nombre"].toUpperCase() == nombre.toUpperCase())  {
+        if (categoria["Nombre"].toUpperCase() == nombre.toUpperCase() && categoria["Id"] != this.id)  {
         console.log(categoria["Nombre"] + ' = ' + nombre);
         return {invalidName : true};
         }

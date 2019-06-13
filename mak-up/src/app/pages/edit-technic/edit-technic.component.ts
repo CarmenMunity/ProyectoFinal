@@ -189,9 +189,9 @@ export class EditTechnicComponent implements OnInit {
   validationName(): ValidatorFn {
     return (control: AbstractControl) => {
       var nombre = control.value;
-      console.log(nombre);
+      //console.log(nombre);
       this.tecnicas.forEach((tecnica) => {
-        if (tecnica["Nombre"].toUpperCase() == nombre.toUpperCase())  {
+        if (tecnica["Nombre"].toUpperCase() == nombre.toUpperCase() && tecnica["Id"] != this.id)  {
         console.log(tecnica["Nombre"] + ' = ' + nombre);
         return {invalidName : true};
         }

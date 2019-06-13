@@ -216,7 +216,7 @@ export class EditProductComponent implements OnInit {
       var nombre = control.value;
       console.log(nombre);
       this.productos.forEach((producto) => {
-        if (producto["Nombre"].toUpperCase() == nombre.toUpperCase())  {
+        if (producto["Nombre"].toUpperCase() == nombre.toUpperCase() && producto["Id"] != this.id)  {
         console.log(producto["Nombre"] + ' = ' + nombre);
         return {invalidName : true};
         }
