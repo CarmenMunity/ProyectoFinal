@@ -172,6 +172,7 @@ export class ShowCategoryComponent implements OnInit {
         this.modCategoryForm.value.id=categoria["Id"];
       }
     });
+    this.validationName();
     //console.log(cat);
     this.apiService.updateCategoria(this.modCategoryForm.value).subscribe((categoria: Categoria) => {
       //console.log("Categoria editada", categoria);
@@ -190,6 +191,5 @@ export class ShowCategoryComponent implements OnInit {
       });
       return null;
     }
-    
   }
 }

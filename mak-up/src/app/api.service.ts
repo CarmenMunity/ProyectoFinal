@@ -89,4 +89,11 @@ export class ApiService {
   deleteTipo(id: number){
     return this.httpClient.delete<Tipo>(`${this.PHP_API_SERVER}/php-mysql/api/borrarTipo.php/?id=${id}`);
   }
+  //Busquedas
+  entradaPorProducto(producto: number): Observable<Entrada[]>{
+    return this.httpClient.get<Entrada[]>(`${this.PHP_API_SERVER}/php-mysql/api/entradaPorProducto.php/?producto=${producto}`);
+  }
+  entradaPorTecnica(tecnica: number): Observable<Entrada[]>{
+    return this.httpClient.get<Entrada[]>(`${this.PHP_API_SERVER}/php-mysql/api/entradaPorTecnica.php/?tecnica=${tecnica}`);
+  }
 }
