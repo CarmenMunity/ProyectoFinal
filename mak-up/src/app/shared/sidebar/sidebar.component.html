@@ -12,18 +12,35 @@
     </div>
   </div>
   <nav class="sidebar-menu p-1 pb-3">
-    <!--<div class="menu-header ml-1 mt-1 mb-2">
-      Components
+    <div class="menu-header ml-1 mt-1 mb-2">
+      Filtrar por:
     </div>
     <ul class="menu-items">
       <li >
-        <a href="#" routerLink="/dashboard" routerLinkActive="active">
-          <i class="fa fa-tv"></i>
-          <span>Dashboard</span>
-          <span class="badge badge-warning rounded-0 text-dark p-1">NEW</span>
-        </a>
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Tecnicas
+              </button>
+            </h5>
+          </div>
+      
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              <ul>
+                <li *ngFor="let tecnica of tecnicas">
+                    <a href="#" routerLink="/buscar-por-tecnica" routerLinkActive="active">
+                      <i class="fa fa-align-center"></i>
+                      <span>{{tecnica['Nombre']}}</span>
+                    </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </li>
-      <li>
+      <!--<li>
         <a href="#" routerLink="/forms" routerLinkActive="active">
           <i class="fas fa-gem"></i>
           <span>Forms</span>
@@ -52,7 +69,7 @@
           <i class="fas fa-bell"></i>
           <span>Notifications</span>
         </a>
-      </li>
-    </ul>-->
+      </li>-->
+    </ul>
   </nav>
 </aside>

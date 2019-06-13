@@ -12,7 +12,8 @@ import { EditTechnicComponent } from './pages/edit-technic/edit-technic.componen
 import { EditEntradaComponent } from './pages/edit-entrada/edit-entrada.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ShowEntradaComponent } from './pages/show-entrada/show-entrada.component';
-
+import { ShowForProComponent } from './pages/show-for-pro/show-for-pro.component';
+import { ShowForTecComponent } from './pages/show-for-tec/show-for-tec.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, data: {title: 'Pagina Principal'}},
@@ -29,6 +30,9 @@ const appRoutes: Routes = [
   {path: 'editar-producto', component: EditProductComponent},
   {path: 'editar-tecnica', component: EditTechnicComponent},
   {path: 'editar-entrada', component: EditEntradaComponent},
+  {path: 'buscar-por-producto', component: ShowForProComponent},
+  {path: 'buscar-por-tecnica', component: ShowForTecComponent},
+
   //{path: '**', component: PagenotfountComponent}
 ];
 

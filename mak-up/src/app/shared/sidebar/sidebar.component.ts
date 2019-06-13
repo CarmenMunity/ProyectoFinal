@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Usuario } from 'src/app/models/usuario.model';
 import { HeaderComponent } from '../header/header.component';
+import { Tecnica } from 'src/app/models/tecnica.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,12 +18,14 @@ export class SidebarComponent implements OnInit {
   cargado: boolean = false;
   nombre:string;
   userName:string;
+  tecnicas: Tecnica[];
 
   constructor(
     private apiService: ApiService
   ) { }
 
   ngOnInit() {
+    this.leer();
     //console.log(localStorage.getItem("log"));
     if(localStorage.getItem("log") == "true"){
       this.login=true;
@@ -39,7 +42,9 @@ export class SidebarComponent implements OnInit {
       this.usuarios = usuarios;
       //console.log(this.usuarios);
     });
-
+    this.apiService.readTecnicas().subscribe((tecnicas: Tecnica[]) => {
+      this.tecnicas = tecnicas;
+    });
   }
 
 }
