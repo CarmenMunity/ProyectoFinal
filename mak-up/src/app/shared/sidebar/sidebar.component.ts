@@ -4,6 +4,7 @@ import { Usuario } from 'src/app/models/usuario.model';
 import { HeaderComponent } from '../header/header.component';
 import { Tecnica } from 'src/app/models/tecnica.model';
 import { Router } from '@angular/router';
+import { Producto } from 'src/app/models/producto.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -20,6 +21,7 @@ export class SidebarComponent implements OnInit {
   nombre:string;
   userName:string;
   tecnicas: Tecnica[];
+  productos: Producto[];
 
   constructor(
     public router: Router,
@@ -47,9 +49,15 @@ export class SidebarComponent implements OnInit {
     this.apiService.readTecnicas().subscribe((tecnicas: Tecnica[]) => {
       this.tecnicas = tecnicas;
     });
+    this.apiService.readProducto().subscribe((producto: Producto[]) => {
+      this.productos = producto;
+    });
   }
-  irProductos(id){
-    this.router.navigate(['/entrada'],{queryParams:{id}})
+  irProductos(producto){
+    this.router.navigate(['/entrada'],{queryParams:{producto}})
+  }
+  irTecnicas(tecnica){
+    this.router.navigate(['/entrada'],{queryParams:{tecnica}})
   }
 
 }
