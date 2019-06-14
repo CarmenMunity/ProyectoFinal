@@ -1,9 +1,35 @@
 <div *ngIf="cargado" class="container wm-75" id="div-edit-pro">
   <h1 class="h2 mb-3 font-weight-normal">Busqueda por Productos {{producto['Nombre']}}</h1>
-  <div *ngFor="let producto of productos">                                                                                                                                                                                                                   " class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  <div class="card-deck">
+      <div *ngFor="let entrada of entradas" class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <botton class="btn btn-link" (click)="irEntrada(entrada['Id'])"><h5 class="card-title">{{entrada['Titulo']}}</h5></botton>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+        <div class="card-footer">
+          <small (click)="buscarUsuario(entrada['Usuario'])" class="text-muted">Creado por </small>
+        </div>
+      </div>
+      <!--<div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>-->
     </div>
-  </div>
 </div>
