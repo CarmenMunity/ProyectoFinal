@@ -13,9 +13,11 @@ import { Entrada } from 'src/app/models/entrada.model';
 export class ShowForProComponent implements OnInit {
 
   id: number;
-  productos: any[];
+  productos: Producto[];
   categorias: Categoria[];
   entradas: Entrada[];
+  producto: Producto;
+  cargado: boolean = false;
   
   constructor(
     public route: ActivatedRoute,
@@ -24,14 +26,25 @@ export class ShowForProComponent implements OnInit {
 
   ngOnInit() {
     this.id=parseInt(this.route.snapshot.queryParamMap.get('producto'));
+
+    this.leer();
+    setTimeout(() => {
+      //console.log(this.productos);
+      this.productos.forEach((producto) => {
+        if (producto["Id"] == this.id) {
+          this.producto = producto;
+        }
+      });
+      this.cargado = true;
+    }, 600);
   }
 
   leer() {
     this.apiService.entradaPorProducto(this.id).subscribe((entradas: Entrada[]) => {
       this.entradas = entradas;
     });
-    this.apiService.readCategoria().subscribe((categorias: Categoria[]) => {
-      this.categorias = categorias;
+    this.apiService.readProducto().subscribe((productos: Producto[]) => {
+      this.productos = productos;
     });
   }
 }

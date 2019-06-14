@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { Tecnica } from 'src/app/models/tecnica.model';
 import { Categoria } from 'src/app/models/categoria.model';
+import { Entrada } from 'src/app/models/entrada.model';
 
 @Component({
   selector: 'app-show-for-tec',
@@ -14,6 +15,7 @@ export class ShowForTecComponent implements OnInit {
   id: number;
   tecnicas: Tecnica[];
   categorias: Categoria[];
+  entradas: Entrada[];
   
   constructor(
     public route: ActivatedRoute,
@@ -21,13 +23,16 @@ export class ShowForTecComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.id=parseInt(this.route.snapshot.queryParamMap.get('tecnica'));
+
+    this.leer();
   }
   leer() {
+    this.apiService.entradaPorTecnica(this.id).subscribe((entradas: Entrada[]) => {
+      this.entradas = entradas;
+    });
     this.apiService.readTecnicas().subscribe((tecnicas: Tecnica[]) => {
       this.tecnicas = tecnicas;
-    });
-    this.apiService.readCategoria().subscribe((categorias: Categoria[]) => {
-      this.categorias = categorias;
     });
   }
 
