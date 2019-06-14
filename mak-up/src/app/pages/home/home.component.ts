@@ -27,8 +27,5 @@ export class HomeComponent implements OnInit {
       //console.log(entradas);
     });
   }
-  irEntrada(id){
-    this.router.navigate(['/entrada'],{queryParams:{id}})
-  }
 
 }
