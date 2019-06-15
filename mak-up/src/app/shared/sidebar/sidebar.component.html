@@ -54,10 +54,10 @@
               <div class="card-body">
                 <ul>
                   <li *ngFor="let producto of productos">
-                      <a href="#" routerLink="/buscar-por-producto" routerLinkActive="active">
-                        <i class="fa fa-align-center"></i>
+                    <button class="btn btn-link" (click)="irProductos(producto['Id']);">
+                    <i class="fa fa-align-center"></i>
                         <span>{{producto['Nombre']}}</span>
-                      </a>
+                    </button> 
                   </li>
                 </ul>
               </div>

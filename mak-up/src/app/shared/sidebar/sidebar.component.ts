@@ -54,7 +54,8 @@ export class SidebarComponent implements OnInit {
     });
   }
   irProductos(producto){
-    this.router.navigate(['/entrada'],{queryParams:{producto}})
+    console.log(producto);
+    this.router.navigate(['/buscar-por-producto'],{queryParams:{'producto': producto}})
   }
   irTecnicas(tecnica){
     this.router.navigate(['/entrada'],{queryParams:{tecnica}})
