@@ -1,3 +1,16 @@
-<p>
-  show-for-tec works!
-</p>
+<div *ngIf="cargado" class="container wm-75" id="div-for-tec">
+  <h1 class="h2 mb-4 font-weight-normal">Busqueda por Tecnica: {{tecnica['Nombre']}}</h1>
+  <div class="card-deck mr-3">
+    <div *ngFor="let entrada of entradas" class="card">
+      <img class="card-img-top" src="{{entrada['Imagen']}}" alt="Imagen del tecnica" height="300px" width="">
+      <div class="card-body">
+        <button class="btn btn-link" (click)="irEntrada(entrada['Id'])">
+          <h5 class="card-title">{{entrada['Titulo']}}</h5>
+        </button>
+      </div>
+      <div class="card-footer">
+        <small (click)="buscarUsuario(entrada['Usuario'])" class="text-muted">Creado por </small>
+      </div>
+    </div>
+  </div>
+</div>

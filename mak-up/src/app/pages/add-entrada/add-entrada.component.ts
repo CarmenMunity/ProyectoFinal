@@ -52,6 +52,8 @@ export class AddEntradaComponent implements OnInit {
   }
   newEntrada() {
     var idUser = parseInt(localStorage.getItem("id"));
+    //var image ="assets\img" + this.newEntradaForm.get('img').value;
+    //this.newEntradaForm.get('img').setValue(image);
     this.apiService.createEntrada(this.newEntradaForm.value, idUser).subscribe((entrada: Entrada) => {
       //console.log("Entrada created, ", entrada);
       this.tipo.entrada = entrada["Id"];

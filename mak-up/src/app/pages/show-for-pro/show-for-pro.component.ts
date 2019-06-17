@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { Producto } from 'src/app/models/producto.model';
 import { Categoria } from 'src/app/models/categoria.model';
@@ -24,6 +24,7 @@ export class ShowForProComponent implements OnInit {
   
   constructor(
     public route: ActivatedRoute,
+    public router: Router,
     private apiService: ApiService
   ) { }
 
@@ -60,5 +61,8 @@ export class ShowForProComponent implements OnInit {
       }
     });
 
+  }
+  irEntrada(id:number){
+    this.router.navigate(['/entrada'],{queryParams:{id}})
   }
 }

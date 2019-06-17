@@ -6,6 +6,7 @@ import { Tecnica } from 'src/app/models/tecnica.model';
 import { Router } from '@angular/router';
 import { Producto } from 'src/app/models/producto.model';
 
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -14,6 +15,8 @@ import { Producto } from 'src/app/models/producto.model';
 export class SidebarComponent implements OnInit {
 
   login: boolean = false;
+  isCollapsed: boolean = true;
+  isCollapsed1: boolean = true;
   usuarios: Usuario[];
   usuario: Usuario;
   id: number;
@@ -54,11 +57,11 @@ export class SidebarComponent implements OnInit {
     });
   }
   irProductos(producto){
-    console.log(producto);
+    //console.log(producto);
     this.router.navigate(['/buscar-por-producto'],{queryParams:{'producto': producto}})
   }
   irTecnicas(tecnica){
-    this.router.navigate(['/entrada'],{queryParams:{tecnica}})
+    this.router.navigate(['/buscar-por-tecnica'],{queryParams:{'tecnica':tecnica}})
   }
 
 }

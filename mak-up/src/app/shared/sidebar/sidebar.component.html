@@ -16,54 +16,56 @@
       Filtrar por:
     </div>
     <ul class="menu-items">
-      <li >
+      <li>
         <div class="card">
           <div class="card-header" id="headingOne">
             <h5 class="mb-0">
-              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <button class="col btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseOne">
                 Tecnicas
               </button>
             </h5>
           </div>
-      
-          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+
+          <div id="collapseOne" [ngbCollapse]="isCollapsed" class="collapse show" aria-labelledby="headingOne"
+            data-parent="#accordion">
             <div class="card-body">
               <ul>
                 <li *ngFor="let tecnica of tecnicas">
-                    <a href="#" routerLink="/buscar-por-tecnica" routerLinkActive="active">
-                      <i class="fa fa-align-center"></i>
-                      <span>{{tecnica['Nombre']}}</span>
-                    </a>
+                  <button class="btn btn-link" (click)="irTecnicas(tecnica['Id']);">
+                    <span>{{tecnica['Nombre']}}</span>
+                  </button>
                 </li>
               </ul>
             </div>
           </div>
         </div>
       </li>
-      <li >
-          <div class="card">
-            <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Productos
-                </button>
-              </h5>
-            </div>
-        
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body">
-                <ul>
-                  <li *ngFor="let producto of productos">
-                    <button class="btn btn-link" (click)="irProductos(producto['Id']);">
-                    <i class="fa fa-align-center"></i>
-                        <span>{{producto['Nombre']}}</span>
-                    </button> 
-                  </li>
-                </ul>
-              </div>
+      <li>
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="col btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+              (click)="isCollapsed1 = !isCollapsed1" [attr.aria-expanded]="!isCollapsed1" aria-controls="collapseOne">
+                Productos
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapseOne" [ngbCollapse]="isCollapsed1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              <ul>
+                <li *ngFor="let producto of productos">
+                  <button class="btn btn-link" (click)="irProductos(producto['Id']);">
+
+                    <span>{{producto['Nombre']}}</span>
+                  </button>
+                </li>
+              </ul>
             </div>
           </div>
-        </li>
+        </div>
+      </li>
       <!--<li>
         <a href="#" routerLink="/forms" routerLinkActive="active">
           <i class="fas fa-gem"></i>

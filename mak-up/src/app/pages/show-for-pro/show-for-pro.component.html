@@ -1,17 +1,18 @@
-<div *ngIf="cargado" class="container wm-75" id="div-edit-pro">
-  <h1 class="h2 mb-3 font-weight-normal">Busqueda por Productos {{producto['Nombre']}}</h1>
-  <div class="card-deck">
-      <div *ngFor="let entrada of entradas" class="card">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <button class="btn btn-link" (click)="irEntrada(entrada['Id'])"><h5 class="card-title">{{entrada['Titulo']}}</h5></button>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
-        <div class="card-footer">
-          <small (click)="buscarUsuario(entrada['Usuario'])" class="text-muted">Creado por </small>
-        </div>
+<div *ngIf="cargado" class="container wm-75" id="div-for-pro">
+  <h1 class="h2 mb-4 font-weight-normal">Busqueda por Productos: {{producto['Nombre']}}</h1>
+  <div class="card-deck mr-3">
+    <div *ngFor="let entrada of entradas" class="card">
+      <img class="card-img-top" src="{{entrada['Imagen']}}" alt="Imagen del producto" height="300px" width="">
+      <div class="card-body">
+        <button class="btn btn-link" (click)="irEntrada(entrada['Id'])">
+          <h5 class="card-title">{{entrada['Titulo']}}</h5>
+        </button>
       </div>
-      <!--<div class="card">
+      <div class="card-footer">
+        <small (click)="buscarUsuario(entrada['Usuario'])" class="text-muted">Creado por </small>
+      </div>
+    </div>
+    <!--<div class="card">
         <img class="card-img-top" src="..." alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
@@ -31,5 +32,5 @@
           <small class="text-muted">Last updated 3 mins ago</small>
         </div>
       </div>-->
-    </div>
+  </div>
 </div>

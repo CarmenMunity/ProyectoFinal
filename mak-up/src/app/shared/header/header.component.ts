@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Router, Event, NavigationEnd, NavigationError } from '@angular/router';
 import { LoginComponent } from '../login/login.component'
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Usuario } from 'src/app/models/usuario.model';
 import { ApiService } from 'src/app/api.service';
 

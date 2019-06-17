@@ -65,7 +65,7 @@ export class AddTechnicComponent implements OnInit {
       this.newTechnicForm.get('categoria').setValue(1);;
     }
     this.apiService.createTecnica(this.newTechnicForm.value).subscribe((tecnica: Tecnica) => {
-      console.log("Tecnica created, ", tecnica);
+      //console.log("Tecnica created, ", tecnica);
       this.msnVerify(tecnica);
     });
 
@@ -76,7 +76,7 @@ export class AddTechnicComponent implements OnInit {
     this.tec.nombre = tec1["Nombre"];
     this.tec.descripcion = tec1["Descripcion"];
     this.tec.categoria = tec1["Categoria"];
-    console.log(this.tec);
+    //console.log(this.tec);
 
     Swal.fire({
       title: 'Se ha añadido',
@@ -89,7 +89,7 @@ export class AddTechnicComponent implements OnInit {
   controlCat(): ValidatorFn{
     return (control: AbstractControl)=> {
       var categoria = control.value;
-      console.log(categoria);
+      //console.log(categoria);
 
       return null;
     }
@@ -97,10 +97,10 @@ export class AddTechnicComponent implements OnInit {
   validationName(): ValidatorFn {
     return (control: AbstractControl) => {
       var nombre = control.value;
-      console.log(nombre);
+      //console.log(nombre);
       this.tecnicas.forEach((tecnica) => {
         if (tecnica["Nombre"].toUpperCase() == nombre.toUpperCase())  {
-        console.log(tecnica["Nombre"] + ' = ' + nombre);
+        //console.log(tecnica["Nombre"] + ' = ' + nombre);
         return {invalidName : true};
         }
       });
