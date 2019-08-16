@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { CookieService } from 'ngx-cookie-service';
 //Modules
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
@@ -29,7 +29,7 @@ import { APP_ROUTES } from './app.routes';
   exports: [
 
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

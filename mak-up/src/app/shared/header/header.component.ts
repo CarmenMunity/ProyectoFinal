@@ -4,6 +4,7 @@ import { LoginComponent } from '../login/login.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Usuario } from 'src/app/models/usuario.model';
 import { ApiService } from 'src/app/api.service';
+import { CookieService } from 'ngx-cookie-service';
 
 //import { Router }  from
 @Component({
@@ -19,26 +20,45 @@ export class HeaderComponent implements OnInit, OnChanges {
   usuario: Usuario;
   id:number;
   perfil:string;
+  private _sessionId: string;
+  data: string;
 
   constructor(
     public router: Router,
-    private apiService: ApiService
-  ) { 
-    
+    private apiService: ApiService,
+    private cookieService: CookieService
+  ) {   
   }
   ngOnInit() {
-    //console.log(localStorage.getItem("log"));
-    if(localStorage.getItem("log") == "true"){
+    this._sessionId = this.getSessionId();
+    if(this._sessionId != "0"){
       this.login=true;
+      console.log("he entrado y esto funciona");
     }
+    //console.log(localStorage.getItem("log"));
+    /*if(localStorage.getItem("log") == "true"){
+      this.login=true;
+    }*/
     this.perfil = localStorage.getItem("perfil");
   }
   ngOnChanges(changes: SimpleChanges) {
+    console.log(changes + "los cambios");
+    if (changes['_sessionId']) {
+      console.log('Hello ');
+    }
+  }
+  public getSessionId() {
+    return this.cookieService.get("sessionId");
+  }
+  public sessionId(value: string) {
+    this._sessionId = value;
+    this.cookieService.set("sessionId", value);
   }
   logOut() {
     this.login = false;
-    console.log(this.login);
+    //console.log(this.login);
     localStorage.clear();
+    this.cookieService.deleteAll();
     //this.router.navigate(['/']);
     this.pageRefresh();
   }

@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/api.service';
 import { HeaderComponent } from '../header/header.component';
 import { Location } from '@angular/common';
 import Swal from 'sweetalert2'
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -21,12 +22,15 @@ export class LoginComponent implements OnInit {
   user: Usuario  = { id: null, nombre: null, apellidos: null, email: null, imagen: null, perfil: null, login: null, pass: null };;
   public alert: any = {};
   public showAlert: boolean;
+  private _sessionId: string;
 
   constructor(
     public router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private cookieService: CookieService
   ) {
     this.showAlert = false;
+    this._sessionId = cookieService.get("sessionId");
   }
 
   ngOnInit() {
@@ -36,6 +40,10 @@ export class LoginComponent implements OnInit {
       pass: new FormControl(null, [Validators.required]),
     });
     
+  }
+  public sessionId(value: string) {
+    this._sessionId = value;
+    this.cookieService.set("sessionId", value);
   }
   leer() {
     this.apiService.readUsuario().subscribe((usuarios: Usuario[]) => {
@@ -54,6 +62,7 @@ export class LoginComponent implements OnInit {
         if(this.user.pass == usuario["Pass"]){
          // console.log(usuario);
           //this.user.id=usuario["Id"];
+          this.sessionId(usuario["Id"]);
           localStorage.setItem('id', usuario["Id"]);
           localStorage.setItem('nombre', usuario["Nombre"]);
           localStorage.setItem('perfil', usuario["Perfil"]);
