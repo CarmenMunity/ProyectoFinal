@@ -14,7 +14,7 @@ import { Tipo } from './models/tipo.model';
 })
 export class ApiService {
 
-  PHP_API_SERVER = "http://localhost";
+  PHP_API_SERVER = "https://mak-upforu.000webhostapp.com";
   constructor(private httpClient: HttpClient) {}
 
   //Categorias

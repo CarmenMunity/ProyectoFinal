@@ -2,18 +2,22 @@
   <app-sidebar class="mr-3"></app-sidebar>
   <div class="pages container-fluid pt-4 pb-4 mt-3">
     <div class="row">
-        <div id="entradas" class="continer-fluid mr-3 col-sm-10" id="div-entradas-recientes">
+        <div id="entradas" class="continer-fluid mr-3 col-sm-8" id="div-entradas-recientes">
             <h1 class="h2 mb-3 font-weight-normal">Entradas recientes</h1>
-            <div  *ngFor="let entrada of entradas" class="">
-              <div class="d-flex justify-content-arround p-1 mb-3 div-entradas">
+            <div *ngFor="let entrada of entradas" class="">
+              <div class="d-flex justify-content-arround p-1 mb-3 div-entradas aling-center">
+                <div class="w-25 h-25 mr-1">
                   <img src="{{entrada['Imagen']}}" height="100px" width="auto"/>
+                </div>
+                <div class="w-75">
                   <button class="btn btn-link btn-entrada" (click)="irEntrada(entrada['Id'])"><h3>{{entrada["Titulo"]}}</h3></button>
+                </div>
               </div> 
             </div>
           </div>
-          <!--<div id="div-top-ten" class="continer-fluid text-center p-1 col-sm-3">
+          <div id="div-top-ten" class="continer-fluid text-center p-1 col-sm-3">
             <h2 class="h3 mb-3 font-weight-normal">Top 10 de Entradas</h2>
-          </div>-->
+          </div>
     </div>    
   </div>
 </div>

@@ -4,9 +4,9 @@ header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'id9842923_makup');
+define('DB_USER', 'id10246001_carmen');
+define('DB_PASS', 'carmenmola123');
+define('DB_NAME', 'id10246001_makup');
 
 function connect()
 {

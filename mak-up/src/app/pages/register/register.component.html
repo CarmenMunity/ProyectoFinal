@@ -29,7 +29,6 @@
       <label for="email">Email:</label>
       <input id="email" class="form-control" type="text" formControlName="email" [ngClass]="[
       profileForm.get('email').touched && profileForm.get('email').invalid ? 'is-invalid' : '',
-      emailExists ? 'is-invalid' : '',
       profileForm.get('email').dirty && profileForm.get('email').valid ? 'is-valid' : ''
       ]">
       <div class="invalid-feedback">
