@@ -28,12 +28,12 @@ export class HeaderComponent implements OnInit, OnChanges {
     private apiService: ApiService,
     private cookieService: CookieService
   ) {   
+    this._sessionId = cookieService.get("sessionId");
   }
   ngOnInit() {
-    this._sessionId = this.getSessionId();
-    if(this._sessionId != "0"){
+    if(this._sessionId != ""){
       this.login=true;
-      console.log("he entrado y esto funciona");
+      //console.log("he entrado y esto funciona");
     }
     //console.log(localStorage.getItem("log"));
     /*if(localStorage.getItem("log") == "true"){

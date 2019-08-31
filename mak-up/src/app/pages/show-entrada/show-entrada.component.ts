@@ -4,6 +4,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Entrada } from 'src/app/models/entrada.model';
 import { ActivatedRoute } from '@angular/router';
 import { Valoracion } from 'src/app/models/valoracion.model';
+import { CookieService } from 'ngx-cookie-service';
+import { NgModule } from '@angular/core';
 
 interface ICompany {
   id: number;
@@ -14,7 +16,7 @@ interface ICompany {
 @Component({
   selector: 'app-show-entrada',
   templateUrl: './show-entrada.component.html',
-  styleUrls: ['./show-entrada.component.css']
+  styleUrls: []
 })
 export class ShowEntradaComponent implements OnInit {
 
@@ -26,11 +28,15 @@ export class ShowEntradaComponent implements OnInit {
   ratingClicked: number;
   itemIdRatingClicked: string;
   item: ICompany = { 'id': 0, 'rating': 3, 'entrada':null, 'usuario': null };
+  _sessionId: string;
 
   constructor(
     public route: ActivatedRoute,
-    private apiService: ApiService
-  ) { }
+    private apiService: ApiService,
+    private cookieService: CookieService
+  ) {
+    this._sessionId = cookieService.get("sessionId");
+   }
 
   ngOnInit() {
     this.leer();
@@ -43,7 +49,7 @@ export class ShowEntradaComponent implements OnInit {
         }       
       });
       this.cargado=true; 
-    }, 600);
+    }, 500);
     this.item.entrada= this.id.toString();
 
   }
@@ -65,5 +71,8 @@ export class ShowEntradaComponent implements OnInit {
     }
     //localStorage.setItem('rating', usuario["Id"]);
   }
-
+  
+  nuevaValoracion(){
+    
+  }
 }

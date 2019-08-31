@@ -2,6 +2,36 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 /*@import 'assets/css/munity.css';
 @import 'assets/css/custom.css';*/
+.navbar, .dropdown-item, .dropdownItems, footer{
+    background-color: #C5ADD0;
+    color: black;
+}
+.btn-outline-success{
+    color: black;
+    border: 1px solid black;
+}
+#logo{
+    margin:0;
+    padding: 0;
+    width: auto;
+    height: 4em;
+}
+main{
+    background-color: rgba(255, 248, 203, 0.5);
+}
+.btn-estandar{
+    background-color: #C5ADD0;
+    border: 1px solid #C29BCB;
+    color: black;
+}
+.card-deck{
+    max-width: 30%;
+}
+#div-for-tec{
+    height: 100%;
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
 .menu-items{
     list-style: none;
 }
@@ -9,11 +39,6 @@
     height: 100%;
     padding-top: 100px;
     padding-bottom: 100px;
-}
-.btn-estandar{
-    background-color: #C5ADD0;
-    border: 1px solid #C29BCB;
-    color: black;
 }
 #form-new-entrada{
     height: 100%;
@@ -32,3 +57,51 @@
 #h1-reg{
     padding-top: 2.5%;
 }
+#imgUsu{
+    width:auto;
+    height:100px;
+}
+#div-usuario-img{
+    padding-left: 50px;
+    height: 50%;
+}
+.col{
+    padding-left: 5em;
+    padding-right: 5em;
+}
+#div-top-ten{
+    border: 0.5px solid rgb(197,173,208, 0.5);
+}
+.div-entradas{
+    margin-bottom: 3em;
+    border-bottom: 0.5px solid rgb(197,173,208, 0.5);
+} 
+#form-new-prod{
+    height: 100%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.cleaned{
+    border: 0;
+    background-color: rgba(255, 248, 203, 0.5);
+    appearance:none;
+}
+.td-profile-noInput{
+    padding-left: 1.5em;
+}
+#form-edit-entrada{
+    height: 100%;
+    padding-top: 100px;
+    padding-bottom: 10px;
+}
+.cleaned{
+    border: 0;
+    background-color: rgb(255,239,140, 0.5);
+    appearance:none;
+}
+#div-edit-pro{
+    height: 100%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+

@@ -32,10 +32,54 @@
         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
     </div>
     <div class="pb-5 pt-2">
-        <h3>Valoración</h3>
-        <div class="panel panel-primary">
-            <app-rating [rating]='item.rating' [itemId]='item.id' (ratingClick)='ratingComponentClick($event)'>
-            </app-rating>
+        <div *ngIf="_sessionId == ''">
+            <h3>Valoración Global</h3>
+            <div class="panel panel-primary">
+                <app-rating [rating]='item.rating' [itemId]='item.id' (ratingClick)='ratingComponentClick($event)'>
+                </app-rating>
+            </div>
         </div>
+
+        <div *ngIf="_sessionId != ''">
+            <h3>Introduce tu Valoración</h3>
+            <select class="w-25" id="valor">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <!--<mat-form-field>
+            <mat-label placeholder="Operaciones" [(ngModel)]="seleccionada" name="operacion"></mat-label>
+                <mat-select disableRipple>
+                    <mat-option value="1">Option 1</mat-option>
+                    <mat-option value="2">Option 2</mat-option>
+                    <mat-option value="3">Option 3</mat-option>
+                </mat-select>
+        </mat-form-field>-->
+
     </div>
+    <!--<div class="contenedor">
+
+        <mat-form-field>
+            <input matInput [(ngModel)]="valor1" type="number" placeholder="Ingrese primer valor">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [(ngModel)]="valor2" type="number" placeholder="Ingrese segundo valor">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Operaciones" [(ngModel)]="seleccionada" name="operacion">
+                <mat-option>
+                    1
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="operar()">Operar</button>
+        <p>El resultado es:{{resultado}}</p>
+    </div>-->
+
 </div>

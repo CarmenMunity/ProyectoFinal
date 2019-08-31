@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-edit-entrada',
   templateUrl: './edit-entrada.component.html',
-  styleUrls: ['./edit-entrada.component.css']
+  styleUrls: []
 })
 export class EditEntradaComponent implements OnInit {
 

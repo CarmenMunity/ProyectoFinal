@@ -7,9 +7,9 @@
             <div *ngFor="let entrada of entradas" class="">
               <div class="d-flex justify-content-arround p-1 mb-3 div-entradas aling-center">
                 <div class="w-25 h-25 mr-1">
-                  <img src="{{entrada['Imagen']}}" height="100px" width="auto"/>
+                  <img src="{{entrada['Imagen']}}" height="100px" width="100px"/>
                 </div>
-                <div class="w-75">
+                <div class="w-75 text-center">
                   <button class="btn btn-link btn-entrada" (click)="irEntrada(entrada['Id'])"><h3>{{entrada["Titulo"]}}</h3></button>
                 </div>
               </div> 

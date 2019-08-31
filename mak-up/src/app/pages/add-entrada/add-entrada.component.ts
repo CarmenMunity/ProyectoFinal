@@ -10,7 +10,7 @@ import { Tipo } from 'src/app/models/tipo.model';
 @Component({
   selector: 'app-add-entrada',
   templateUrl: './add-entrada.component.html',
-  styleUrls: ['./add-entrada.component.css']
+  styleUrls: []
 })
 export class AddEntradaComponent implements OnInit {
 

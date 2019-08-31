@@ -71,8 +71,8 @@ export class LoginComponent implements OnInit {
           this.log=true;
           localStorage.setItem('log',"true");
           //console.log(localStorage.getItem("log"));
-          this.router.navigate(['/']);
-          //this.pageRefresh();
+          //this.router.navigate(['/']);
+          this.pageRefresh();
         }
       }
     });//fin foreach
@@ -93,6 +93,5 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
     this.router.navigate([""])); 
   }
-
 
 }
