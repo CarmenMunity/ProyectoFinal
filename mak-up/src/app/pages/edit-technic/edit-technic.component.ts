@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-edit-technic',
   templateUrl: './edit-technic.component.html',
-  styleUrls: ['./edit-technic.component.css']
+  styleUrls: []
 })
 export class EditTechnicComponent implements OnInit {
   modTechnicForm: FormGroup;

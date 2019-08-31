@@ -19,10 +19,17 @@
 main{
     background-color: rgba(255, 248, 203, 0.5);
 }
-.btn-estandar{
+.btn-estandar, .btn-info{
     background-color: #C5ADD0;
     border: 1px solid #C29BCB;
     color: black;
+}
+.th-profile{
+    background-color: #f2f2f2;
+    width: 50%;
+}
+#div-table-profile{
+    width: 50% ;
 }
 .card-deck{
     max-width: 30%;
@@ -40,7 +47,25 @@ main{
     padding-top: 100px;
     padding-bottom: 100px;
 }
-#form-new-entrada{
+#div-for-pro{
+    height: 100%;
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+#h1-login{
+    padding-top: 2.5%;
+}
+#div-login {
+    height: 100%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+#div-edit-cat{
+    height: 100%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+#form-new-entrada, #form-new-tec{
     height: 100%;
     padding-top: 100px;
     padding-bottom: 100px;
@@ -93,6 +118,18 @@ main{
     height: 100%;
     padding-top: 100px;
     padding-bottom: 10px;
+}
+#div-edit-tec{
+    height: 100%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.tr-desc{
+    height: 125px;
+}
+.text-desc{
+    height: 125px;
+    overflow: hidden;
 }
 .cleaned{
     border: 0;

@@ -9,7 +9,7 @@ import { Usuario } from 'src/app/models/usuario.model';
 @Component({
   selector: 'app-show-for-tec',
   templateUrl: './show-for-tec.component.html',
-  styleUrls: ['./show-for-tec.component.css']
+  styleUrls: []
 })
 export class ShowForTecComponent implements OnInit {
   

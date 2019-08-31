@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-show-category',
   templateUrl: './show-category.component.html',
-  styleUrls: ['./show-category.component.css']
+  styleUrls: []
 })
 export class ShowCategoryComponent implements OnInit {
   modCategoryForm: FormGroup;

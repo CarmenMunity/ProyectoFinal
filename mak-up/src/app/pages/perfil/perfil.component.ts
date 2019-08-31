@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/api.service';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css']
+  styleUrls: []
 })
 export class PerfilComponent implements OnInit {
 

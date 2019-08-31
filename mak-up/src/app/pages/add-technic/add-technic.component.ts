@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-add-technic',
   templateUrl: './add-technic.component.html',
-  styleUrls: ['./add-technic.component.css']
+  styleUrls: []
 })
 export class AddTechnicComponent implements OnInit {
 
